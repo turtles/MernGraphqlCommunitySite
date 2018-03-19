@@ -8,26 +8,28 @@ const UserLoginContainer = styled.div`
   margin:auto;
 `;
 
-class UserLogin extends React.Component {
+class UserSignup extends React.Component {
   render() {
     return (
       <div>
-        <h2>User Login</h2>
+        <h2>Create an Account</h2>
         <UserLoginContainer>
           <Form>
             <FormGroup>
-              <Input type="email" name="email" id="exampleEmail" placeholder="Email or Username" />
+              <Input type="email" name="email" placeholder="Email" />
             </FormGroup>
             <FormGroup>
-              <Input type="password" name="password" id="examplePassword" placeholder="Password" />
+              <Input type="text" name="username" placeholder="Username" />
             </FormGroup>
-            <Button>Submit</Button>
+            <FormGroup>
+              <Input type="password" name="password" placeholder="Password" />
+            </FormGroup>
+            <Button>Sign up</Button>
           </Form>
-          <Link to="/">Forgot Password?</Link>
         </UserLoginContainer>
       </div>
     );
   }
 }
 
-export default UserLogin;
+export default UserSignup;

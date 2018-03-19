@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import UserLogin from './../components/user/UserLogin.js';
 import {Container} from 'reactstrap';
 
-class LoginPage extends Component {
+class SubmitPage extends Component {
   render() {
     return (
       <Container>
-        <UserLogin/>
+        <h2>Submit</h2>
       </Container>
     );
   }
 }
 
-export default LoginPage;
+export default SubmitPage;

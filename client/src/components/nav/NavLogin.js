@@ -10,7 +10,7 @@ export default class NavLogin extends React.Component {
         <Link to={`/login`}>
           <Button outline color="primary">Login</Button>
         </Link>{' '}
-        <Link to={`/login`}>
+        <Link to={`/register`}>
           <Button outline color="primary">Signup</Button>
         </Link>
 
