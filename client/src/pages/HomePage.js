@@ -9,7 +9,6 @@ class HomePage extends Component {
     return (
       <Container>
       <GetHello/>
-      <ContentTable/>
       </Container>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserSignup from './../components/user/UserSignup.js';
+import UserSignup from './../components/user/signup/UserSignup.js';
 import {Container} from 'reactstrap';
 
 class SignupPage extends Component {

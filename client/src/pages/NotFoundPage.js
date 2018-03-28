@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UserLogin from './../components/user/UserLogin.js';
 import {Container} from 'reactstrap';
 
 class NotFoundPage extends Component {
