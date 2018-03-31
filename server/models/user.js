@@ -39,7 +39,7 @@ UserSchema.pre('save', function (next) {
   var user = this;
 
   if (user.isModified('password')) {
-    .genSalt(10, (err, salt) => {
+    bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(user.password, salt, (err, hash) => {
         user.password = (hash);
         next();
@@ -50,6 +50,9 @@ UserSchema.pre('save', function (next) {
   }
 })
 
+//
+// Instance Methods
+//
 UserSchema.methods.toJSON = function() {
   var user = this;
   var userObject = user.toObject();
@@ -68,6 +71,22 @@ UserSchema.methods.generateAuthToken = function () {
   });
 }
 
+UserSchema.methods.removeToken = function (token) {
+  var user = this;
+
+  return user.update({
+    $pull: {
+      tokens: {
+        token
+      }
+    }
+  });
+}
+
+
+//
+// Static methods
+//
 UserSchema.statics.findByToken = function (token) {
   var User = this;
   var decoded;
@@ -83,6 +102,25 @@ UserSchema.statics.findByToken = function (token) {
     'tokens.token': token,
     'tokens.access': 'auth'
   });
+}
+
+UserSchema.statics.findByCredentials = function (email, password) {
+  var User = this;
+  return User.findOne({email}).then((user)=> {
+    if (!user) {
+      return Promise.reject();
+    }
+
+    return new Promise((resolve,reject) => {
+      if (bcrypt.compare(password,user.password, (err,res)=> {
+        if (res) {
+          resolve(user);
+        } else {
+          reject();
+        }
+      }));
+    });
+  })
 }
 
 var User = mongoose.model('User', UserSchema);
