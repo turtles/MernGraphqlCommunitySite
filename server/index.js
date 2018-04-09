@@ -8,10 +8,8 @@ const cors = require('cors');
 const MongoStore = require('connect-mongo')(session);
 const graphqlSchema = require('./graphql/schema');
 
-const {mongoose} = require('./db/mongoose');
+const {mongoose, MONGO_URI} = require('./db/mongoose');
 const app = express();
-
-const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/MernMeanApp';
 
 app.use(session({
   resave: true,
