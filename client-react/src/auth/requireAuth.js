@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import currentUserQuery from '../queries/CurrentUser';
+import currentUserQuery from '../graphql/queries/CurrentUser';
 
 export default (WrappedComponent) => {
   class RequireAuth extends Component {

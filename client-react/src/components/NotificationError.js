@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class NotificationError extends Component {
   render() {
     if (!this.props.errors || this.props.errors.length===0) {
-      return;
+      return null;
     }
     return (
       <div>
@@ -12,3 +12,5 @@ class NotificationError extends Component {
     );
   }
 }
+
+export default NotificationError;
