@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const expressGraphQL = require('express-graphql');
 const passport = require('passport');
 const session = require('express-session');
+const cors = require('cors');
 const MongoStore = require('connect-mongo')(session);
 const graphqlSchema = require('./graphql/schema');
 
@@ -21,9 +22,15 @@ app.use(session({
     autoReconnect: true
   })
 }));
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true
+};
+
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors(corsOptions));
 
 app.use('/graphql', expressGraphQL({
   schema: graphqlSchema,
