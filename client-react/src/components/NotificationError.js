@@ -6,9 +6,9 @@ class NotificationError extends Component {
       return null;
     }
     return (
-      <div>
-        {this.props.errors.map(error => (<div key={error}>{error}</div>))}
-      </div>
+      <ul>
+        {this.props.errors.map(error => (<li key={error}>{error}</li>))}
+      </ul>
     );
   }
 }
