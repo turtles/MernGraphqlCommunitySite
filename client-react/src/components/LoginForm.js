@@ -7,7 +7,7 @@ import NotificationError from './NotificationError';
 import mutation from '../graphql/mutations/LoginUser';
 import query from '../graphql/queries/CurrentUser';
 
-class Login extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
 
@@ -35,5 +35,5 @@ class Login extends Component {
 }
 
 export default graphql(mutation)(
-    graphql(query)(Login)
+    graphql(query)(LoginForm)
 );

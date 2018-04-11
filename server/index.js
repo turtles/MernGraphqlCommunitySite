@@ -7,6 +7,7 @@ const session = require('express-session');
 const cors = require('cors');
 const MongoStore = require('connect-mongo')(session);
 const graphqlSchema = require('./graphql/schema');
+const path = require("path");
 
 const {mongoose, MONGO_URI} = require('./db/mongoose');
 const app = express();
@@ -34,6 +35,10 @@ app.use('/graphql', expressGraphQL({
   schema: graphqlSchema,
   graphiql: true
 }));
+
+app.use('/', function(req,res) {
+  res.sendFile(path.join(__dirname, '/index.html'));
+})
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

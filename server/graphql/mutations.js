@@ -10,7 +10,7 @@ const AuthService = require('../middleware/passport');
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    signup: {
+    register: {
       type: UserType,
       args: {
         email: { type: GraphQLString },
