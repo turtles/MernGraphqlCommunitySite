@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+const validator = require("email-validator");
 
 class AuthForm extends Component {
   constructor(props){
@@ -8,7 +10,16 @@ class AuthForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('submit');
+
+    if (!validator.validate(this.state.email)) {
+      if (this.props.onError) {
+        console.log('error');
+        this.props.onError("Oh no, that email is not valid.");
+      }
+      return;
+    }
+
+    console.log('submit', this.state.email, this.state.password);
 
     this.props.onSubmit(this.state);
   }
@@ -37,5 +48,10 @@ class AuthForm extends Component {
     );
   }
 }
+
+AuthForm.propTypes = {
+  onSubmit: PropTypes.func,
+  onError: PropTypes.func
+};
 
 export default AuthForm;

@@ -14,9 +14,12 @@ class LoginForm extends Component {
     this.state = {errors: []};
   }
 
+  onError(error) {
+    this.setState({errors: [error]});
+  }
   onSubmit({email, password}) {
     this.props.mutate({
-      variables: {email,password},
+      variables: {email, password},
       refetchQueries: [{ query }]
     }).catch(res => {
       const errors = res.graphQLErrors.map(error=>error.message);
@@ -27,8 +30,11 @@ class LoginForm extends Component {
     return (
       <div>
         <h3>Log in</h3>
-        <AuthForm onSubmit = {this.onSubmit.bind(this)}/>
-        <NotificationError error={this.state.errors}/>
+        <AuthForm
+          onSubmit={this.onSubmit.bind(this)}
+          onError={this.onError.bind(this)}
+        />
+        <NotificationError errors={this.state.errors}/>
       </div>
     );
   }
