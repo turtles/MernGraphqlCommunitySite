@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const sendActivationEmail = require('../email/sendActivationEmail');
 
 const User = mongoose.model('user');
 
@@ -41,6 +42,7 @@ function signup({ email, password, req }) {
       return new Promise((resolve, reject) => {
         req.logIn(user, (err) => {
           if (err) { reject(err); }
+          sendActivationEmail(user.email, user.activation_token);
           resolve(user);
         });
       });

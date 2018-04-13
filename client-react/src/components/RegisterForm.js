@@ -17,6 +17,7 @@ class RegisterForm extends Component {
   onError(error) {
     this.setState({errors: [error]});
   }
+  
   onSubmit({email, password}) {
     this.props.mutate({
       variables: {email, password},
