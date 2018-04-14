@@ -43,7 +43,7 @@ class AuthForm extends Component {
           placeholder = "Password"
           type="password"
           onChange={this.updatePassword.bind(this)} />
-        <button type="submit">Log in</button>
+        <button type="submit">Submit</button>
       </form>
     );
   }
