@@ -16,7 +16,7 @@ module.exports = function(email, activationToken) {
     });
 
     const activationEmailBody =
-      `This is your account activation link! localhost:3000/activate/${activationToken}`;
+      `This is your account activation link! localhost:3001/activate/${activationToken}`;
 
     let mailOptions = {
       from: '"A ghost ooOoOOo 👻" <aghostooooooo@example.com>', // sender address

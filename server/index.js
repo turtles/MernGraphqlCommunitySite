@@ -12,6 +12,8 @@ const path = require("path");
 const {mongoose, MONGO_URI} = require('./db/mongoose');
 const app = express();
 
+const User = mongoose.model('user');
+
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -36,9 +38,23 @@ app.use('/graphql', expressGraphQL({
   graphiql: true
 }));
 
+app.use("/activate/:token", function(req,res) {
+  User.findOneAndUpdate(
+    { activation_token: req.params.token }, // query
+    { activated: true }, // update activated to true
+    { new: true }
+  )
+    .then(user=> {
+      console.log(user);
+      resolve(user);
+    });
+  console.log(req.params);
+  res.send(req.params);
+})
+
 app.use('/', function(req,res) {
   res.sendFile(path.join(__dirname, '/index.html'));
-})
+});
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
