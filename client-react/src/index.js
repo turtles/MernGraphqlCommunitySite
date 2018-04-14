@@ -5,14 +5,14 @@ import ApolloClient from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from "apollo-link-http";
 import { ApolloProvider } from 'react-apollo';
-import { Router, Route, IndexRoute } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from './App';
 import requireAuth from './auth/requireAuth';
+import rootReducer from './reducers';
 
-import reducers from './reducers';
+const store = createStore(rootReducer);
 
 const cache = new InMemoryCache({
   dataIdFromObject: o=>o.id || null
@@ -28,12 +28,12 @@ const client = new ApolloClient({
 
 const Root = () => {
   return (
-    <ApolloProvider client={client}>
-      <App/>
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <App/>
+      </ApolloProvider>
+    </Provider>
   );
 };
 
 ReactDOM.render(<Root />, document.querySelector('#root'));
-
-// registerServiceWorker();

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { graphql } from 'react-apollo';
+import { Link } from 'react-router-dom';
+
+import LoginInfo from './LoginInfo';
+import query from '../graphql/queries/CurrentUser';
+import mutation from '../graphql/mutations/LogoutUser';
 
 class Header extends Component {
   constructor(props) {
@@ -8,11 +13,21 @@ class Header extends Component {
     this.renderLogin.bind(this);
   }
 
+  logout() {
+    this.props.mutate({
+      refetchQueries: [{ query }]
+    });
+  }
+
   renderLogin() {
-    if (this.state.user) {
+    const { loading, user } = this.props.data;
+    if (loading) { return (<div/>); }
+
+    if (user) {
       return (
         <div>
-          <Link to="/logout">Logout</Link>
+          <LoginInfo username={this.props.data.user.email}/>
+          <a onClick={this.logout.bind(this)}>Logout</a>
         </div>
       );
     } else {
@@ -34,4 +49,6 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default graphql(mutation)(
+  graphql(query)(Header)
+);

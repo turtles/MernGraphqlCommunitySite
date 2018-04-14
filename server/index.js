@@ -39,6 +39,8 @@ app.use('/graphql', expressGraphQL({
 }));
 
 app.use("/activate/:token", function(req,res) {
+  // Todo: Extend route with user,
+  // then check if the user has already been activated.
   User.findOneAndUpdate(
     { activation_token: req.params.token }, // query
     { activated: true }, // update activated to true
@@ -50,7 +52,7 @@ app.use("/activate/:token", function(req,res) {
     });
   console.log(req.params);
   res.send(req.params);
-})
+});
 
 app.use('/', function(req,res) {
   res.sendFile(path.join(__dirname, '/index.html'));

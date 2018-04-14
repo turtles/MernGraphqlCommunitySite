@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import {
+  withRouter
+} from 'react-router-dom';
 
 import AuthForm from './AuthForm';
 import NotificationError from './NotificationError';
@@ -13,7 +18,13 @@ class LoginForm extends Component {
 
     this.state = {errors: []};
   }
+  componentWillUpdate(nextProps) {
+    const { history } = this.props;
 
+    if (!this.props.data.user && nextProps.data.user) {
+      history.push('/'); // redirect
+    }
+  }
   onError(error) {
     this.setState({errors: [error]});
   }
@@ -40,6 +51,22 @@ class LoginForm extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  // authenticated: state.auth.authenticated,
+  // errMsg: state.auth.err
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  // userSignin: ({ username, password }) => dispatch(userSignin({ username, password }))
+  return {
+
+  };
+}
+
 export default graphql(mutation)(
-    graphql(query)(LoginForm)
+    graphql(query)(
+      withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm))
+    )
 );
