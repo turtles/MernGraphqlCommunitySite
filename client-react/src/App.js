@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import Home from './components/Home';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import LoginForm from './components/LoginForm';
@@ -12,7 +13,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-          <Route exact path="/" component={Dashboard}/>
+          <Route exact path="/" component={Home}/>
+          <Route path="/dashboard" component={Dashboard}/>
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>
         </div>
