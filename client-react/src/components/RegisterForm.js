@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 
 import AuthForm from './AuthForm';
 import NotificationError from './NotificationError';
@@ -13,11 +15,16 @@ class RegisterForm extends Component {
 
     this.state = {errors: []};
   }
+  componentWillUpdate(nextProps) {
+    const { history } = this.props;
 
+    if (!this.props.data.user && nextProps.data.user) {
+      history.push('/'); // redirect
+    }
+  }
   onError(error) {
     this.setState({errors: [error]});
   }
-  
   onSubmit({email, password}) {
     this.props.mutate({
       variables: {email, password},
@@ -27,7 +34,6 @@ class RegisterForm extends Component {
       this.setState({ errors });
     });
   }
-
   render() {
     return (
       <div>
@@ -41,7 +47,18 @@ class RegisterForm extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+  };
+}
 
 export default graphql(mutation)(
-    graphql(query)(RegisterForm)
+    graphql(query)(
+        withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterForm))
+    )
 );

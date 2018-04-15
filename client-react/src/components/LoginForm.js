@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
-import {
-  withRouter
-} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import AuthForm from './AuthForm';
 import NotificationError from './NotificationError';
 
-import mutation from '../graphql/mutations/LoginUser';
 import query from '../graphql/queries/CurrentUser';
+import mutation from '../graphql/mutations/LoginUser';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -52,16 +49,12 @@ class LoginForm extends Component {
 }
 
 function mapStateToProps(state) {
-  // authenticated: state.auth.authenticated,
-  // errMsg: state.auth.err
   return {
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  // userSignin: ({ username, password }) => dispatch(userSignin({ username, password }))
   return {
-
   };
 }
 

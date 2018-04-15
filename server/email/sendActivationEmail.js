@@ -5,6 +5,9 @@ let transportAccountVerification;
 
 module.exports = function(email, activationToken) {
   nodemailer.createTestAccount((err, account) => {
+      if (err) {
+        return console.log(err);
+      }
      let transport = nodemailer.createTransport({
       host: 'smtp.ethereal.email',
       port: 587,
