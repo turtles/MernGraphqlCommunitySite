@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 let transportAccountVerification;
 
 
-module.exports = function(email, activationToken) {
+module.exports = function(email, userId, activationToken) {
   nodemailer.createTestAccount((err, account) => {
       if (err) {
         return console.log(err);
@@ -19,7 +19,7 @@ module.exports = function(email, activationToken) {
     });
 
     const activationEmailBody =
-      `This is your account activation link! localhost:3001/activate/${activationToken}`;
+      `This is your account activation link! localhost:3001/activate/${userId}/${activationToken}`;
 
     let mailOptions = {
       from: '"A ghost ooOoOOo 👻" <aghostooooooo@example.com>', // sender address

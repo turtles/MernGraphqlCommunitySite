@@ -38,16 +38,21 @@ app.use('/graphql', expressGraphQL({
   graphiql: true
 }));
 
-app.use("/activate/:token", function(req,res) {
+app.use("/activate/:userId/:token", function(req,res) {
   // Todo: Extend route with user,
   // then check if the user has already been activated.
   User.findOneAndUpdate(
-    { activation_token: req.params.token }, // query
-    { activated: true }, // update activated to true
+    { // query
+      _id: req.params.userId,
+      activation_token: req.params.token
+    },
+    { // update activated to true, clear out token
+      activated: true,
+      activation_token: ""
+    },
     { new: true }
   )
     .then(user=> {
-      console.log(user);
       resolve(user);
     });
   console.log(req.params);

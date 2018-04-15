@@ -42,7 +42,7 @@ function signup({ email, password, req }) {
       return new Promise((resolve, reject) => {
         req.logIn(user, (err) => {
           if (err) { reject(err); }
-          sendActivationEmail(user.email, user.activation_token);
+          sendActivationEmail(user.email, user._id, user.activation_token);
           resolve(user);
         });
       });
