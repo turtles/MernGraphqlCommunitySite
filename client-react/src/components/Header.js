@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
+import { Row, Col, Nav, NavItem } from 'reactstrap';
 
-import LoginInfo from './LoginInfo';
+import HeaderLogo from './HeaderLogo';
+import LoginInfo from './Account/LoginInfo';
 import query from '../graphql/queries/CurrentUser';
 import mutation from '../graphql/mutations/LogoutUser';
 
@@ -25,26 +27,35 @@ class Header extends Component {
 
     if (user) {
       return (
-        <div>
-          <LoginInfo username={this.props.data.user.email}/>
-          <a onClick={this.logout.bind(this)}>Logout</a>
-        </div>
+        <Nav pills>
+          <NavItem>
+            <LoginInfo username={this.props.data.user.email}/>
+          </NavItem>
+          <NavItem>
+            <a onClick={this.logout.bind(this)}>Logout</a>
+          </NavItem>
+        </Nav>
       );
     } else {
       return (
-        <div>
-          <Link to="/login">Log in</Link>
-          <Link to="/register">Sign up</Link>
-        </div>
+        <Nav pills>
+          <NavItem>
+            <Link to="/login">Log in</Link>
+          </NavItem>
+          <NavItem>
+            <Link to="/register">Sign up</Link>
+          </NavItem>
+        </Nav>
       );
     }
   }
 
   render() {
     return (
-      <div>
-        {this.renderLogin()}
-      </div>
+      <Row>
+        <Col md="10" xs="6"><HeaderLogo/></Col>
+        <Col md="2" xs="6">{this.renderLogin()}</Col>
+      </Row>
     )
   }
 }

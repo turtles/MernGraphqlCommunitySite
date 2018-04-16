@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 
 import AuthForm from './AuthForm';
-import NotificationError from './NotificationError';
+import NotificationError from '../NotificationError';
 
-import query from '../graphql/queries/CurrentUser';
-import mutation from '../graphql/mutations/RegisterUser';
+import query from '../../graphql/queries/CurrentUser';
+import mutation from '../../graphql/mutations/LoginUser';
 
-class RegisterForm extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
 
@@ -30,23 +30,24 @@ class RegisterForm extends Component {
       variables: {email, password},
       refetchQueries: [{ query }]
     }).catch(res => {
-      const errors = res.graphQLErrors.map(error => error.message);
+      const errors = res.graphQLErrors.map(error=>error.message);
       this.setState({ errors });
     });
   }
   render() {
     return (
       <div>
-        <h3>Create an Account</h3>
+        <h3>Log in</h3>
         <AuthForm
           onSubmit={this.onSubmit.bind(this)}
           onError={this.onError.bind(this)}
         />
-        <NotificationError errors = {this.state.errors}/>
+        <NotificationError errors={this.state.errors}/>
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
   };
@@ -59,6 +60,6 @@ function mapDispatchToProps(dispatch) {
 
 export default graphql(mutation)(
     graphql(query)(
-        withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterForm))
+      withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm))
     )
 );

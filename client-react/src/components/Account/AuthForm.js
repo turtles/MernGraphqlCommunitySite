@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-const validator = require("email-validator");
+import { Button, Form, FormGroup, Input } from 'reactstrap';
+const validator = require('email-validator');
 
 class AuthForm extends Component {
   constructor(props){
@@ -34,17 +35,23 @@ class AuthForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <input
-          placeholder = "Email"
-          type="text"
-          onChange={this.updateEmail.bind(this)} />
-        <input
-          placeholder = "Password"
-          type="password"
-          onChange={this.updatePassword.bind(this)} />
-        <button type="submit">Submit</button>
-      </form>
+      <Form onSubmit={this.handleSubmit.bind(this)}>
+        <FormGroup>
+          <Input
+            placeholder = "Email"
+            type="text"
+            onChange={this.updateEmail.bind(this)} />
+        </FormGroup>
+        <FormGroup>
+          <Input
+            placeholder = "Password"
+            type="password"
+            onChange={this.updatePassword.bind(this)} />
+        </FormGroup>
+        <FormGroup>
+          <Button type="submit">Submit</Button>
+        </FormGroup>
+      </Form>
     );
   }
 }

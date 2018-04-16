@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import query from '../graphql/queries/CurrentUser';
-
 class Home extends Component {
   render() {
     return (
       <div>
-        <h6>This is the worlds more advanced homepage</h6>
+        <h6>This is the world&#39;s most advanced homepage</h6>
       </div>
     );
   }
