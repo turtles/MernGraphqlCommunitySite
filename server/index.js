@@ -39,8 +39,7 @@ app.use('/graphql', expressGraphQL({
 }));
 
 app.use("/activate/:userId/:token", function(req,res) {
-  // Todo: Extend route with user,
-  // then check if the user has already been activated.
+  // Todo: check if the user has already been activated.
   User.findOneAndUpdate(
     { // query
       _id: req.params.userId,

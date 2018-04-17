@@ -2,6 +2,7 @@ const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLID } = graphql;
 
 const UserType = require('./user_type');
+const ArticleType = require('./article_type');
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',

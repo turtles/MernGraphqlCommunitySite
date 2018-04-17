@@ -35,6 +35,4 @@ UserSchema.methods.comparePassword = function comparePassword(candidatePassword,
   });
 };
 
-//UserSchema.methods.verifyEmail = function verifyEmail(email, )
-
 mongoose.model('user', UserSchema);
