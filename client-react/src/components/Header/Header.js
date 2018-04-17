@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
-import { Row, Col, Nav, NavItem } from 'reactstrap';
+import {
+    Row,
+    Nav, NavItem, NavLink, Navbar, NavbarBrand
+} from 'reactstrap';
 
 import HeaderLogo from './HeaderLogo';
-import LoginInfo from './Account/LoginInfo';
-import query from '../graphql/queries/CurrentUser';
-import mutation from '../graphql/mutations/LogoutUser';
+import LoginInfo from './../Account/LoginInfo';
+import MainNav from './Navigation/MainNav';
+import query from '../../graphql/queries/CurrentUser';
+import mutation from '../../graphql/mutations/LogoutUser';
 
 class Header extends Component {
   constructor(props) {
@@ -23,27 +27,27 @@ class Header extends Component {
 
   renderLogin() {
     const { loading, user } = this.props.data;
-    if (loading) { return (<div/>); }
+    if (loading) { return (<Nav/>); }
 
     if (user) {
       return (
-        <Nav pills>
+        <Nav>
           <NavItem>
             <LoginInfo username={this.props.data.user.email}/>
           </NavItem>
           <NavItem>
-            <a onClick={this.logout.bind(this)}>Logout</a>
+            <NavLink href="#" onClick={this.logout.bind(this)}>Logout</NavLink>
           </NavItem>
         </Nav>
       );
     } else {
       return (
-        <Nav pills>
+        <Nav>
           <NavItem>
-            <Link to="/login">Log in</Link>
+            <NavLink tag={Link} to="/login">Log in</NavLink>
           </NavItem>
           <NavItem>
-            <Link to="/register">Sign up</Link>
+            <NavLink tag={Link} to="/register">Sign up</NavLink>
           </NavItem>
         </Nav>
       );
@@ -52,10 +56,18 @@ class Header extends Component {
 
   render() {
     return (
-      <Row>
-        <Col md="10" xs="6"><HeaderLogo/></Col>
-        <Col md="2" xs="6">{this.renderLogin()}</Col>
-      </Row>
+      <div>
+        <Navbar>
+          <NavbarBrand tag={Link} to={'/'}>
+            <HeaderLogo/>
+          </NavbarBrand>
+
+          {this.renderLogin()}
+        </Navbar>
+        <Row>
+          <MainNav/>
+        </Row>
+      </div>
     )
   }
 }
