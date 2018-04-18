@@ -8,7 +8,7 @@ import Dashboard from './components/Dashboard';
 import Preferences from './components/Account/AccountPreferences/AccountPreferences';
 import LoginForm from './components/Account/Login/LoginForm';
 import RegisterForm from './components/Account/Login/RegisterForm';
-import CreateContent from './components/Create/CreateContent';
+import CreateContent from './components/Submit/SubmitContent';
 import NotFound from './components/Errors/NotFound';
 
 class App extends Component {

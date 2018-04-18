@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
 
-import CreateContentForm from './CreateContentForm';
+import SubmitContentForm from './SubmitContentForm';
 import RequiresLoginError from '../Errors/RequiresLogin';
 import query from '../../graphql/queries/CurrentUser';
 
-class CreateContent extends Component {
+class SubmitContent extends Component {
   constructor(props) {
     super(props);
     this.authenticateThenRender = this.authenticateThenRender.bind(this);
@@ -35,7 +35,7 @@ class CreateContent extends Component {
     return (
       <div>
         <h3>Submit an Article</h3>
-        <CreateContentForm/>
+        <SubmitContentForm/>
       </div>
     );
   }
@@ -50,5 +50,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default graphql(query)(
-  connect(mapStateToProps, mapDispatchToProps)(CreateContent)
+  connect(mapStateToProps, mapDispatchToProps)(SubmitContent)
 );

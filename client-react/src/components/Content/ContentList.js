@@ -26,7 +26,7 @@ class ContentList extends Component {
   render() {
     const contentList = this.state.articles.map((article, id) => (
       <Listing
-        id={id}
+        key={id}
         title={article.title}
         content={article.content}
         tags={article.tags}
