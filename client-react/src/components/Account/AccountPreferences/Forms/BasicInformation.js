@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+
+import query from '../../../../graphql/queries/CurrentUser';
 
 class BasicInformation extends Component {
   render() {
@@ -12,7 +17,7 @@ class BasicInformation extends Component {
         </FormGroup>
         <FormGroup>
         <Label for="inputUsername">Email</Label>
-          <Input type="email" name="email" id="inputEmail" disabled />
+          <Input type="email" name="email" id="inputEmail" disabled value={this.props.data.user.email}/>
         </FormGroup>
 
         <legend>Change Password</legend>
@@ -34,4 +39,16 @@ class BasicInformation extends Component {
   }
 }
 
-export default BasicInformation;
+function mapStateToProps(state) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+  };
+}
+
+export default graphql(query)(
+  withRouter(connect(mapStateToProps, mapDispatchToProps)(BasicInformation))
+);
