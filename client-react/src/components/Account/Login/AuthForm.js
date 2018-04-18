@@ -49,7 +49,7 @@ class AuthForm extends Component {
             onChange={this.updatePassword.bind(this)} />
         </FormGroup>
         <FormGroup>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" color="primary">Submit</Button>
         </FormGroup>
       </Form>
     );

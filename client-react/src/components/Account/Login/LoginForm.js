@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 
 import AuthForm from './AuthForm';
-import NotificationError from '../Errors/NotificationError';
+import NotificationError from '../../Errors/NotificationError';
 
-import query from '../../graphql/queries/CurrentUser';
-import mutation from '../../graphql/mutations/LoginUser';
+import query from '../../../graphql/queries/CurrentUser';
+import mutation from '../../../graphql/mutations/LoginUser';
 
 class LoginForm extends Component {
   constructor(props) {

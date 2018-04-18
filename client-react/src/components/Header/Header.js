@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 
 import HeaderLogo from './HeaderLogo';
-import LoginInfo from './../Account/LoginInfo';
+import LoginInfo from './../Account/Login/LoginInfo';
 import MainNav from './Navigation/MainNav';
 import query from '../../graphql/queries/CurrentUser';
 import mutation from '../../graphql/mutations/LogoutUser';
