@@ -6,6 +6,9 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   email: String,
   password: String,
+  displayName: String,
+  joined: Date,
+  lastLogin: Date,
   activated: { type: Boolean, default: false },
   activation_token: {
     type: String,
