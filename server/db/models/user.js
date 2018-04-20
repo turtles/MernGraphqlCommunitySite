@@ -7,8 +7,10 @@ const UserSchema = new Schema({
   email: String,
   password: String,
   displayName: String,
-  joined: Date,
-  lastLogin: Date,
+  joined: {
+    type: Date,
+    default: new Date()
+  },
   activated: { type: Boolean, default: false },
   activation_token: {
     type: String,
@@ -38,5 +40,9 @@ UserSchema.methods.comparePassword = function comparePassword(candidatePassword,
     cb(err, isMatch);
   });
 };
+
+UserSchema.methods.onLogin = function onLogin() {
+  this.lastLogin = new Date();
+}
 
 mongoose.model('user', UserSchema);

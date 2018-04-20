@@ -8,8 +8,22 @@ const ArticleSchema = new Schema({
   tags: [{
     type: String
   }],
-  created: Date,
+  created: {
+    type: Date,
+    default: new Date()
+  },
+  lastModified: {
+    type: Date,
+    default: new Date()
+  },
   views: Number
+});
+
+// Update last modified date on save
+ArticleSchema.pre('save', function save(next) {
+  const article = this;
+  article.lastModified = new Date();
+  next();
 });
 
 mongoose.model('article', ArticleSchema);
