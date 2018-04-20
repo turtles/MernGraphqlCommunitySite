@@ -3,6 +3,9 @@ import {
   Button, Form, FormGroup, Label, Input, FormText
 } from 'reactstrap';
 import TagsInput from 'react-tagsinput'
+import { graphql } from 'react-apollo';
+
+import mutation from '../../graphql/mutations/SubmitArticle';
 
 class SubmitContentForm extends Component {
   constructor(props) {
@@ -18,6 +21,19 @@ class SubmitContentForm extends Component {
   onSubmit(e){
     e.preventDefault();
     console.log('meow');
+
+
+    this.props.mutate({
+      variables: {
+        owner: this.props.userId,
+        title: this.state.title,
+        body: this.state.body,
+        tags: this.state.tags
+      }
+    }).catch(res => {
+      const errors = res.graphQLErrors.map(error=>error.message);
+      this.setState({ errors });
+    });
   }
 
   render() {
@@ -40,4 +56,4 @@ class SubmitContentForm extends Component {
   }
 }
 
-export default SubmitContentForm;
+export default graphql(mutation)(SubmitContentForm);

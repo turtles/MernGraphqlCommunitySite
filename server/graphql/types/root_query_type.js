@@ -12,6 +12,12 @@ const RootQueryType = new GraphQLObjectType({
       resolve(parentValue, args, req) {
         return req.user;
       }
+    },
+    article: {
+      type: ArticleType,
+      resolve(parentValue, args, req) {
+        return null;
+      }
     }
   }
 });

@@ -2,14 +2,17 @@ const graphql = require('graphql');
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLID
+  GraphQLID,
+  GraphQLInt
 } = graphql;
 
 const ArticleType = new GraphQLObjectType({
   name: 'ArticleType',
   fields: {
     id: { type: GraphQLID },
-    body: { type: GraphQLString }
+    title: { type: GraphQLString },
+    body: { type: GraphQLString },
+    views: { type: GraphQLInt }
   }
 });
 
