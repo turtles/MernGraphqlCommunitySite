@@ -16,7 +16,10 @@ const ArticleSchema = new Schema({
     type: Date,
     default: new Date()
   },
-  views: Number
+  views: {
+    type: Number,
+    default: 0
+  }
 });
 
 // Update last modified date on save

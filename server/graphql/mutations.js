@@ -9,7 +9,7 @@ const {
 const UserType = require('./types/user_type');
 const ArticleType = require('./types/article_type');
 const AuthService = require('../middleware/passport');
-const ArticlesServer = require('../middleware/articles');
+const ArticlesService = require('../middleware/articles');
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -51,19 +51,7 @@ const mutation = new GraphQLObjectType({
         tags: { type: new GraphQLList(GraphQLString) }
       },
       resolve(parentValue, args, info) {
-        // args will equal....
-        // { owner: '123',
-        //   title: 'today in leahland',
-        //   body: 'everything changed',
-        //   tags: [ 'no', 'yes' ] }
-
-        // save the stuff to the database
-        // ArticlesServer
-
-        console.log('hello submit article');
-        console.log(parentValue);
-        console.log(args);
-        console.log(info);
+        ArticlesService.createArticle(args);
       }
     }
   }

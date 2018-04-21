@@ -11,6 +11,9 @@ class SubmitContentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      owner: '',
+      title: '',
+      body: '',
       tags: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -18,10 +21,8 @@ class SubmitContentForm extends Component {
   handleChange(tags) {
     this.setState({tags});
   }
-  onSubmit(e){
+  onSubmit(e) {
     e.preventDefault();
-    console.log('meow');
-
 
     this.props.mutate({
       variables: {
@@ -39,14 +40,14 @@ class SubmitContentForm extends Component {
   render() {
     return (
       <div>
-        <Form onSubmit={this.onSubmit.bind()}>
+        <Form onSubmit={this.onSubmit.bind(this)}>
           <FormGroup>
             <Label for="inputTitle">Title</Label>
-            <Input type="text" name="title" id="inputTitle" />
+            <Input type="text" name="title" id="inputTitle" onChange={e=>this.setState({title: e.target.value})}/>
           </FormGroup>
           <FormGroup>
             <Label for="inputBody">Content</Label>
-            <Input type="textarea" name="body" id="inputBody" />
+            <Input type="textarea" name="body" id="inputBody" onChange={e=>this.setState({body: e.target.value})}/>
           </FormGroup>
           <TagsInput value={this.state.tags} onChange={this.handleChange} />
           <Button color="primary" type="submit">Submit</Button>
