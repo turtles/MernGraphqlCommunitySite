@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom';
 
 import query from '../graphql/queries/CurrentUser';
@@ -33,14 +32,6 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-}
-
 export default graphql(query)(
-  withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard))
+  withRouter(Dashboard)
 );

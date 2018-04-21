@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-
 import ContentList from './Content/ContentList';
 
 class Home extends Component {
@@ -13,12 +11,4 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

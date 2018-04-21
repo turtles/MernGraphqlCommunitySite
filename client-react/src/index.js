@@ -6,13 +6,9 @@ import ApolloClient from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from "apollo-link-http";
 import { ApolloProvider } from 'react-apollo';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 
 import App from './App';
 import rootReducer from './reducers';
-
-const store = createStore(rootReducer);
 
 const cache = new InMemoryCache({
   dataIdFromObject: o=>o.id || null
@@ -28,11 +24,9 @@ const client = new ApolloClient({
 
 const Root = () => {
   return (
-    <Provider store={store}>
-      <ApolloProvider client={client}>
-        <App/>
-      </ApolloProvider>
-    </Provider>
+    <ApolloProvider client={client}>
+      <App/>
+    </ApolloProvider>
   );
 };
 

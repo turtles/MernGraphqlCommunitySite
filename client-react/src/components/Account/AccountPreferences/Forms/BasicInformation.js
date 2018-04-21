@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
@@ -39,16 +38,6 @@ class BasicInformation extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-  };
-}
-
 export default graphql(query)(
-  withRouter(connect(mapStateToProps, mapDispatchToProps)(BasicInformation))
+  withRouter(BasicInformation)
 );

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
 
 import SubmitContentForm from './SubmitContentForm';
@@ -41,14 +40,6 @@ class SubmitContent extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-}
-
 export default graphql(query)(
-  connect(mapStateToProps, mapDispatchToProps)(SubmitContent)
+  SubmitContent
 );

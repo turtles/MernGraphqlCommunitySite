@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 
@@ -51,14 +50,6 @@ class AccountPreferences extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-}
-
 export default graphql(query)(
-  withRouter(connect(mapStateToProps, mapDispatchToProps)(AccountPreferences))
+  withRouter(AccountPreferences)
 );

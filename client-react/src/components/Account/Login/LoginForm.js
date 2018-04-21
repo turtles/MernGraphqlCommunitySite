@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 
 import AuthForm from './AuthForm';
@@ -48,18 +47,8 @@ class LoginForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-  };
-}
-
 export default graphql(mutation)(
     graphql(query)(
-      withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm))
+      withRouter(LoginForm)
     )
 );
