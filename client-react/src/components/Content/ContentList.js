@@ -1,34 +1,24 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
 import { Card, CardTitle, CardImg, CardText, CardBody } from 'reactstrap';
 
 import Listing from './Listing';
+import query from '../../graphql/queries/Articles';
 
 class ContentList extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      articles: [
-        {
-          title: 'meow',
-          tags: [{name: 'news'}, {name: 'really good'}],
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-          title: 'meow2',
-          tags: [{name: 'story'}, {name: 'really good'}],
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        }
-      ]
-    };
   }
-
+  
   render() {
-    const contentList = this.state.articles.map((article, id) => (
+    if (this.props.data.loading) {
+      return <div/>;
+    }
+    const contentList = this.props.data.article.map((article, id) => (
       <Listing
         key={id}
         title={article.title}
-        content={article.content}
+        content={article.body}
         tags={article.tags}
         />
     ));
@@ -41,4 +31,4 @@ class ContentList extends Component {
   }
 }
 
-export default ContentList;
+export default graphql(query)(ContentList);
