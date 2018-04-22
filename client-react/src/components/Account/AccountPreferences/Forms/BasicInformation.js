@@ -19,19 +19,6 @@ class BasicInformation extends Component {
           <Input type="email" name="email" id="inputEmail" disabled value={this.props.data.user.email}/>
         </FormGroup>
 
-        <legend>Change Password</legend>
-        <FormGroup>
-          <Label for="inputCurrentPassword">Current Password</Label>
-          <Input type="password" name="username" id="inputCurrentPassword" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="inputNewPassword">New Password</Label>
-          <Input type="password" name="username" id="inputNewPassword" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="inputConfirmNewPassword">Retype New Password</Label>
-          <Input type="password" name="username" id="inputConfirmNewPassword" />
-        </FormGroup>
         <Button color="primary">Submit</Button>
       </Form>
     );

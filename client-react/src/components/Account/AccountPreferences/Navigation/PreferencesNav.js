@@ -10,6 +10,9 @@ class PreferencesNav extends Component {
         <NavItem>
           <NavLink tag={ Link } to="/preferences">Basic</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink tag={ Link } to="/preferences/password">Change Password</NavLink>
+        </NavItem>
       </Nav>
     );
   }

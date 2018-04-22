@@ -21,7 +21,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/dashboard" component={Dashboard}/>
-            <Route path="/preferences" component={Preferences}/>
+            <Route path="/preferences/:subroute?" component={Preferences}/>
             <Route path="/create" component={CreateContent}/>
             <Route path="/login" component={LoginForm}/>
             <Route path="/register" component={RegisterForm}/>

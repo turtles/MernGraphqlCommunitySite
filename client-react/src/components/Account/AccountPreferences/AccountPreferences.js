@@ -4,6 +4,7 @@ import { withRouter, Redirect } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 
 import BasicInformation from './Forms/BasicInformation';
+import ChangePassword from './Forms/ChangePassword';
 import PreferencesNav from './Navigation/PreferencesNav';
 
 import query from '../../../graphql/queries/CurrentUser';
@@ -39,7 +40,13 @@ class AccountPreferences extends Component {
     );
   }
   renderForm() {
-    return (<BasicInformation/>);
+    switch (this.props.match.params.subroute)
+    {
+      case 'password':
+        return (<ChangePassword/>);
+      default:
+        return (<BasicInformation/>);
+    }
   }
   render() {
     return (
