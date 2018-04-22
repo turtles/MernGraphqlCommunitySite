@@ -8,7 +8,6 @@ import { HttpLink } from "apollo-link-http";
 import { ApolloProvider } from 'react-apollo';
 
 import App from './App';
-import rootReducer from './reducers';
 
 const cache = new InMemoryCache({
   dataIdFromObject: o=>o.id || null
