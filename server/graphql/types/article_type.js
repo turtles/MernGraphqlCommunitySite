@@ -3,16 +3,19 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLList
 } = graphql;
 
 const ArticleType = new GraphQLObjectType({
   name: 'ArticleType',
   fields: {
     id: { type: GraphQLID },
+    owner: { type: GraphQLString },
     title: { type: GraphQLString },
     body: { type: GraphQLString },
-    views: { type: GraphQLInt }
+    views: { type: GraphQLInt },
+    tags: { type: new GraphQLList(GraphQLString) }
   }
 });
 
