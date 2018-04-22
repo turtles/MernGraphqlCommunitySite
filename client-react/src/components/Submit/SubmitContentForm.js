@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Button, Form, FormGroup, Label, Input, FormText
+  Button, Form, FormGroup, Label, Input
 } from 'reactstrap';
 import TagsInput from 'react-tagsinput'
 import { graphql } from 'react-apollo';
