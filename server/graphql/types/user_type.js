@@ -2,14 +2,17 @@ const graphql = require('graphql');
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLID
+  GraphQLID,
+  GraphQLBoolean
 } = graphql;
 
 const UserType = new GraphQLObjectType({
   name: 'UserType',
   fields: {
     id: { type: GraphQLID },
-    email: { type: GraphQLString }
+    email: { type: GraphQLString },
+    displayName: { type: GraphQLString },
+    activated: { type: GraphQLBoolean }
   }
 });
 
