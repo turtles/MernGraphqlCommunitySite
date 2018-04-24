@@ -11,7 +11,7 @@ class MainNav extends Component {
             <NavLink tag={Link} to="/">Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to="/create">Submit</NavLink>
+            <NavLink tag={Link} to="/submit">Submit</NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={Link} to="/dashboard">Dashboard</NavLink>

@@ -22,7 +22,7 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route path="/dashboard" component={Dashboard}/>
             <Route path="/preferences/:subroute?" component={Preferences}/>
-            <Route path="/create" component={CreateContent}/>
+            <Route path="/submit" component={CreateContent}/>
             <Route path="/login" component={LoginForm}/>
             <Route path="/register" component={RegisterForm}/>
             <Route component={NotFound}/>
