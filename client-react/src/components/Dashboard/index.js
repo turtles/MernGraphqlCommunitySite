@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { withRouter, Redirect } from 'react-router-dom';
+import { Row, Col } from 'reactstrap';
 
-import query from '../graphql/queries/CurrentUser';
+import query from '../../graphql/queries/CurrentUser';
+import ArticlesPanel from './Panels/ArticlesPanel';
+import ImpactPanel from './Panels/ImpactPanel';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -20,7 +23,14 @@ class Dashboard extends Component {
   }
   renderDashboard() {
     return (
-      <p>I am dashboard</p>
+      <Row>
+        <Col xs="3">
+          <ArticlesPanel/>
+        </Col>
+        <Col xs="9">
+          <ImpactPanel/>
+        </Col>
+      </Row>
     );
   }
   render() {
