@@ -3,7 +3,8 @@ const graphql = require('graphql');
 const {
   GraphQLObjectType,
   GraphQLID,
-  GraphQLList
+  GraphQLList,
+  GraphQLString
 } = graphql;
 
 const UserType = require('./user_type');
@@ -21,10 +22,36 @@ const RootQueryType = new GraphQLObjectType({
       }
     },
     article: {
-      type: new GraphQLList(ArticleType),
+      type: ArticleType,
+      args: {
+        owner: { type: GraphQLString },
+        title: { type: GraphQLString }
+      },
       resolve(parentValue, args, req) {
+        if (args.owner) {
+            args.owner = mongoose.Types.ObjectId(args.owner);
+        }
         return new Promise((resolve, reject) => {
-          Article.find((err, articles) => {
+          Article.findOne(args,(err, articles) => {
+            if (err) reject(err);
+            resolve(articles);
+          })
+        })
+      }
+    },
+    articles: {
+      type: new GraphQLList(ArticleType),
+      args: {
+        owner: { type: GraphQLString },
+        title: { type: GraphQLString }
+      },
+      resolve(parentValue, args, req) {
+        if (args.owner) {
+            args.owner = mongoose.Types.ObjectId(args.owner);
+        }
+        console.log(args);
+        return new Promise((resolve, reject) => {
+          Article.find(args, (err, articles) => {
             if (err) reject(err);
             resolve(articles);
           })

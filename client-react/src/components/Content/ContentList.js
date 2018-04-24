@@ -10,10 +10,10 @@ class ContentList extends Component {
     if (this.props.data.loading) {
       return <div/>;
     }
-    if (!this.props.data.article) {
+    if (!this.props.data.articles) {
       return (<div>No articles. Want to <Link to="/submit">submit one?</Link></div>);
     }
-    const contentList = this.props.data.article.map((article, id) => (
+    const contentList = this.props.data.articles.map((article, id) => (
       <Listing
         key={id}
         title={article.title}
