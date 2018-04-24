@@ -29,7 +29,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
   });
 }));
 
-function signup({ email, password, req }) {
+function signup({ email, password, info }) {
   const user = new User({ email, password });
   if (!email || !password) { throw new Error('You must provide an email and password.'); }
 
@@ -40,7 +40,7 @@ function signup({ email, password, req }) {
     })
     .then(user => {
       return new Promise((resolve, reject) => {
-        req.logIn(user, (err) => {
+        info.logIn(user, (err) => {
           if (err) { reject(err); }
           sendActivationEmail(user.email, user._id, user.activation_token);
           resolve(user);
@@ -49,12 +49,12 @@ function signup({ email, password, req }) {
     });
 }
 
-function login({ email, password, req }) {
+function login({ email, password, info }) {
   return new Promise((resolve, reject) => {
     passport.authenticate('local', (err, user) => {
       if (!user) { reject('Invalid credentials.') }
 
-      req.login(user, () => resolve(user));
+      info.login(user, () => resolve(user));
     })({ body: { email, password } });
   });
 }
