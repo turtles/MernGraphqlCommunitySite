@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  query FindArticles($owner: String!) {
+  query FindArticlesByOwner($owner: String!) {
     articles(owner: $owner)
     {
       id
