@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 class NotificationError extends Component {
   render() {
+    if (this.props.error) {
+      return (<li>{this.props.error}</li>);
+    }
     if (!this.props.errors || this.props.errors.length===0) {
       return null;
     }
