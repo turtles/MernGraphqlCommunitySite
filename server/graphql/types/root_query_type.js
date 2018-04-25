@@ -49,11 +49,28 @@ const RootQueryType = new GraphQLObjectType({
         if (args.owner) {
             args.owner = mongoose.Types.ObjectId(args.owner);
         }
-        console.log(args);
         return new Promise((resolve, reject) => {
           Article.find(args, (err, articles) => {
             if (err) reject(err);
             resolve(articles);
+          })
+        })
+      }
+    },
+    article: {
+      type: ArticleType,
+      args: {
+        id: { type: GraphQLString }
+      },
+      resolve(parentValue, args, req) {
+        if (args.id) {
+            args._id = mongoose.Types.ObjectId(args.id);
+            delete args.id;
+        }
+        return new Promise((resolve, reject) => {
+          Article.findOne(args, (err, article) => {
+            if (err) reject(err);
+            resolve(article);
           })
         })
       }
