@@ -10,6 +10,7 @@ import LoginForm from './components/Account/Login/LoginForm';
 import RegisterForm from './components/Account/Login/RegisterForm';
 import CreateContent from './components/Submit/SubmitContent';
 import NotFound from './components/Errors/NotFound';
+import ArticlesPage from './components/Articles/ArticlesPage';
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route path="/dashboard" component={Dashboard}/>
             <Route path="/preferences/:subroute?" component={Preferences}/>
+            <Route path="/articles/:id?" component={ArticlesPage}/>
             <Route path="/submit" component={CreateContent}/>
             <Route path="/login" component={LoginForm}/>
             <Route path="/register" component={RegisterForm}/>
