@@ -70,6 +70,10 @@ const RootQueryType = new GraphQLObjectType({
         return new Promise((resolve, reject) => {
           Article.findOne(args, (err, article) => {
             if (err) reject(err);
+            if (article) {
+              article.views++;
+              article.save();
+            }
             resolve(article);
           })
         })

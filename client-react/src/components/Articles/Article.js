@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import query from '../../graphql/queries/FindArticle';
 
 import NotificationError from '../Errors/NotificationError';
+import ViewCounter from './ViewCounter';
 
 class Article extends Component {
   render() {
@@ -16,7 +17,7 @@ class Article extends Component {
       <div>
         <h3>{title}</h3>
         <p>{body}</p>
-        <p>{views} views</p>
+        <ViewCounter views={views}/>
       </div>
     );
   }
