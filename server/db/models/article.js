@@ -24,8 +24,9 @@ const ArticleSchema = new Schema({
 
 // Update last modified date on save
 ArticleSchema.pre('save', function save(next) {
-  const article = this;
-  article.lastModified = new Date();
+  if (this.isModified('title') || this.isModified('body')) {
+      this.lastModified = new Date();
+  }
   next();
 });
 
