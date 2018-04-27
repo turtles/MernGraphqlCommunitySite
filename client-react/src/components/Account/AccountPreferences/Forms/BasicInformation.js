@@ -15,7 +15,7 @@ class BasicInformation extends Component {
     };
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.onChangeDisplayName = this.onChangeDisplayName.bind(this);
   }
   onSubmit(e) {
     e.preventDefault();
@@ -28,7 +28,7 @@ class BasicInformation extends Component {
       console.log(errors);
     });
   }
-  onChange(e) {
+  onChangeDisplayName(e) {
     this.setState({
       displayName: e.target.value
     });
@@ -41,17 +41,15 @@ class BasicInformation extends Component {
           <Label for="inputUsername">Display Name</Label>
           <Input
             type="text"
-            name="username"
             id="inputUsername"
-            onChange={this.onChange}
+            onChange={this.onChangeDisplayName}
             value={this.state.displayName}
           />
         </FormGroup>
         <FormGroup>
-        <Label for="inputUsername">Email</Label>
+          <Label for="inputUsername">Email</Label>
           <Input disabled
             type="email"
-            name="email"
             id="inputEmail"
             value={this.props.data.user.email}
           />
