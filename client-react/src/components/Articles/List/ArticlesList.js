@@ -19,6 +19,7 @@ class ArticlesList extends Component {
         articleId={article.id}
         title={article.title}
         content={article.body}
+        views={article.views}
         tags={article.tags}
         />
     ));

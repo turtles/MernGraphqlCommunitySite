@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Card, CardBody, CardTitle, CardText, Badge} from 'reactstrap';
 import {Link} from 'react-router-dom'
 
+import ViewCounter from '../ViewCounter';
+
 class Listing extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +24,7 @@ class Listing extends Component {
             }
           </CardTitle>
           <CardText>{this.props.content}</CardText>
+          <CardText><ViewCounter views={this.props.views}/></CardText>
         </CardBody>
       </Card>
     );
