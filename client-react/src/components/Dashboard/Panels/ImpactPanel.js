@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Row } from 'reactstrap';
-import {PieChart, Pie, Legend, Tooltip, Cell} from 'recharts';
+import {PieChart, Pie, Tooltip, Cell} from 'recharts';
 import PanelTitle from './PanelTitle';
 
 const data = [{name: 'Group A', value: 400}, {name: 'Group B', value: 300},
