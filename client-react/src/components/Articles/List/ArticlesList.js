@@ -16,6 +16,7 @@ class ArticlesList extends Component {
     const articlesList = this.props.data.articles.map((article, id) => (
       <Listing
         key={id}
+        articleId={article.id}
         title={article.title}
         content={article.body}
         tags={article.tags}
