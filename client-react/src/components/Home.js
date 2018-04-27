@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import ContentList from './Content/ContentList';
+import ArticlesList from './Articles/List/ArticlesList';
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <ContentList />
+        <ArticlesList />
       </div>
     );
   }

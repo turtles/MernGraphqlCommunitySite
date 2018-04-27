@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Article from './Article';
+import FilteredArticlesList from './List/FilteredArticlesList';
 
 class ArticlesPage extends Component {
   render() {
@@ -11,7 +12,9 @@ class ArticlesPage extends Component {
 
     return (
       <div>
-        <h1>articles page</h1>
+        <h1>Browse All Articles</h1>
+
+        <FilteredArticlesList/>
       </div>
     );
   }

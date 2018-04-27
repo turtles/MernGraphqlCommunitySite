@@ -3,9 +3,9 @@ import { graphql } from 'react-apollo';
 import {Link} from 'react-router-dom';
 
 import Listing from './Listing';
-import query from '../../graphql/queries/Articles';
+import query from '../../../graphql/queries/Articles';
 
-class ContentList extends Component {
+class ArticlesList extends Component {
   render() {
     if (this.props.data.loading) {
       return <div/>;
@@ -13,7 +13,7 @@ class ContentList extends Component {
     if (!this.props.data.articles) {
       return (<div>No articles. Want to <Link to="/submit">submit one?</Link></div>);
     }
-    const contentList = this.props.data.articles.map((article, id) => (
+    const articlesList = this.props.data.articles.map((article, id) => (
       <Listing
         key={id}
         title={article.title}
@@ -24,10 +24,10 @@ class ContentList extends Component {
 
     return (
       <div>
-        {contentList}
+        {articlesList}
       </div>
     );
   }
 }
 
-export default graphql(query)(ContentList);
+export default graphql(query)(ArticlesList);
