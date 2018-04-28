@@ -1,9 +1,7 @@
 import React from 'react';
 
 const ViewCounter = ({views}) => (
-  <div>
-    <p>{views} {views === 1 ? "view" : "views"}</p>
-  </div>
+  <span>{views} {views === 1 ? "view" : "views"}</span>
 );
 
 export default ViewCounter;
