@@ -8,7 +8,7 @@ class Listing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: "/articles/" + props.articleId
+      route: "/articles/view/" + props.articleId
     }
   }
   render() {
