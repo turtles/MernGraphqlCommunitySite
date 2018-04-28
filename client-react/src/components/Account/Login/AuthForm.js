@@ -7,6 +7,10 @@ class AuthForm extends Component {
   constructor(props){
     super(props);
     this.state={email:'',password:''};
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateEmail = this.updateEmail.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
   }
 
   handleSubmit(e) {
@@ -19,8 +23,6 @@ class AuthForm extends Component {
       }
       return;
     }
-
-    console.log('submit', this.state.email, this.state.password);
 
     this.props.onSubmit(this.state);
   }
@@ -35,18 +37,18 @@ class AuthForm extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit.bind(this)}>
+      <Form onSubmit={this.handleSubmit}>
         <FormGroup>
           <Input
             placeholder = "Email"
             type="text"
-            onChange={this.updateEmail.bind(this)} />
+            onChange={this.updateEmail} />
         </FormGroup>
         <FormGroup>
           <Input
             placeholder = "Password"
             type="password"
-            onChange={this.updatePassword.bind(this)} />
+            onChange={this.updatePassword} />
         </FormGroup>
         <FormGroup>
           <Button type="submit" color="primary">Submit</Button>
