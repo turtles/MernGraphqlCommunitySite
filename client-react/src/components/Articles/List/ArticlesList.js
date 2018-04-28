@@ -35,7 +35,6 @@ class ArticlesList extends Component {
 export default graphql(query, {
   options:
     (props) => {
-      console.log(props.textSearch);
       if (!props.textSearch) return {variables: {}};
       return {
         variables: {

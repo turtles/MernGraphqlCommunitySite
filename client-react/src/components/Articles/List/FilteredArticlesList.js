@@ -26,8 +26,6 @@ class FilteredArticlesList extends Component {
     this.showList = this.showList.bind(this);
   }
   showList() {
-    console.log(this.props.match.path);
-    console.log(this.state.hasSearchFilter);
     if (this.state.hasSearchFilter) {
       return (
         <ArticlesList textSearch={this.state.textSearch}/>
