@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import Listing from './Listing';
+
 import query from '../../../graphql/queries/FindArticles';
 
 class ArticlesList extends Component {
@@ -43,5 +44,5 @@ export default graphql(query, {
       }
     }
 })(
-  ArticlesList
+  withRouter(ArticlesList)
 );
