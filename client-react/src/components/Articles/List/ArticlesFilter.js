@@ -3,7 +3,7 @@ import {
   Row, Col,
   Form, FormGroup, Input, Button
 } from 'reactstrap'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 class ArticlesFilter extends Component {
   constructor(props) {
@@ -14,11 +14,11 @@ class ArticlesFilter extends Component {
       sortBy: 'newest'
     }
 
-    this.onClickSearchButton=this.onClickSearchButton.bind(this);
+    this.onSubmit=this.onSubmit.bind(this);
     this.onChangeTextSearch = this.onChangeTextSearch.bind(this);
     this.onChangeSortBy = this.onChangeSortBy.bind(this);
   }
-  onClickSearchButton(e){
+  onSubmit(e){
     e.preventDefault();
 
     const route = `/articles/search/${this.state.textSearch}/${this.state.sortBy}`;
@@ -38,7 +38,7 @@ class ArticlesFilter extends Component {
     return (
       <div>
         <h4>Search articles</h4>
-          <Form>
+          <Form onSubmit={this.onSubmit}>
             <Row>
               <Col>
                 <Input
@@ -56,7 +56,7 @@ class ArticlesFilter extends Component {
                 </Input>
               </Col>
               <Col>
-                <Button onClick={this.onClickSearchButton}>Search</Button>
+                <Button type="submit">Search</Button>
               </Col>
             </Row>
           </Form>
