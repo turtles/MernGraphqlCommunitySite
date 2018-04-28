@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { withRouter } from 'react-router-dom';
 
 import AuthForm from './AuthForm';
 import NotificationError from '../../Errors/NotificationError';
@@ -49,6 +48,6 @@ class RegisterForm extends Component {
 
 export default graphql(mutation)(
     graphql(query)(
-        withRouter(RegisterForm)
+        RegisterForm
     )
 );

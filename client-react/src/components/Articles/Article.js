@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { withRouter } from 'react-router-dom';
 import query from '../../graphql/queries/FindArticle';
 
 import NotificationError from '../Errors/NotificationError';
@@ -36,5 +35,5 @@ export default graphql(query,
       }
   }
 )(
-  withRouter(Article)
+  Article
 );

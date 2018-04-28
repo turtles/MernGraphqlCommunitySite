@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { withRouter, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 
 import query from '../../graphql/queries/CurrentUser';
@@ -43,5 +43,5 @@ class Dashboard extends Component {
 }
 
 export default graphql(query)(
-  withRouter(Dashboard)
+  Dashboard
 );

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { withRouter } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import query from '../../../../graphql/queries/CurrentUser';
@@ -63,6 +62,6 @@ class BasicInformation extends Component {
 
 export default graphql(mutation)(
   graphql(query)(
-    withRouter(BasicInformation)
+    BasicInformation
   )
 );
