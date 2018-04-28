@@ -25,7 +25,7 @@ class Dashboard extends Component {
     return (
       <Row>
         <Col xs="3">
-          <ArticlesPanel/>
+          <ArticlesPanel owner={this.props.data.user.id}/>
         </Col>
         <Col xs="9">
           <ImpactPanel/>
