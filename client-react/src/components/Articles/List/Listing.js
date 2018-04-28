@@ -18,8 +18,8 @@ class Listing extends Component {
           <CardTitle>
             <Link to={this.state.route}>{this.props.title}</Link>
             {
-              this.props.tags.map((tag) => (
-                <Badge>{tag.name}</Badge>
+              this.props.tags.map((tag, id) => (
+                <Badge key={id}>{tag.name}</Badge>
               ))
             }
           </CardTitle>
