@@ -43,12 +43,22 @@ const RootQueryType = new GraphQLObjectType({
       type: new GraphQLList(ArticleType),
       args: {
         owner: { type: GraphQLString },
-        title: { type: GraphQLString }
+        title: { type: GraphQLString },
+        textSearch: { type: GraphQLString }
       },
       resolve(parentValue, args, req) {
         if (args.owner) {
             args.owner = mongoose.Types.ObjectId(args.owner);
         }
+        if (args.textSearch) {
+          // Search title and body for this string
+          args.title = args.body = {
+            "$regex": args.textSearch,
+            "$options": "i"
+          };
+          delete args.textSearch;
+        }
+        console.log(args);
         return new Promise((resolve, reject) => {
           Article.find(args, (err, articles) => {
             if (err) reject(err);
