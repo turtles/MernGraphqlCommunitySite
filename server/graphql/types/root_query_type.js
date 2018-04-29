@@ -58,7 +58,6 @@ const RootQueryType = new GraphQLObjectType({
           };
           delete args.textSearch;
         }
-        console.log(args);
         return new Promise((resolve, reject) => {
           Article.find(args, (err, articles) => {
             if (err) reject(err);

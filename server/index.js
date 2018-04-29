@@ -54,7 +54,6 @@ app.use("/activate/:userId/:token", function(req,res) {
     .then(user=> {
       resolve(user);
     });
-  console.log(req.params);
   res.send(req.params);
 });
 
