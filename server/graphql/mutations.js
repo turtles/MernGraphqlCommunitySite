@@ -70,8 +70,10 @@ const mutation = new GraphQLObjectType({
         if (!user) {
           return null;
         }
-        console.log(currentPassword,newPassword);
 
+        return AuthService.changePassword(
+          user, currentPassword, newPassword
+        );
       }
     },
     submitArticle: {

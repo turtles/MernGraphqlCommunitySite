@@ -6,7 +6,7 @@ class NotificationError extends Component {
       return (<li>{this.props.error}</li>);
     }
     if (!this.props.errors || this.props.errors.length===0) {
-      return null;
+      return <div/>;
     }
     return (
       <ul>

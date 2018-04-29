@@ -29,6 +29,26 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
   });
 }));
 
+function changePassword(user, currentPassword, newPassword) {
+  return new Promise((resolve, reject) => {
+    user.comparePassword(currentPassword, (err,isMatch)=>{
+      if (err) {
+        console.log(err);
+        reject('Unspecified error');
+      }
+
+      if (!isMatch) {
+        reject('Current password is invalid.');
+      }
+      else {
+        user.password = newPassword;
+        user.save();
+        resolve(user);
+      }
+    });
+  });
+}
+
 function signup({ email, password, info }) {
   const user = new User({ email, password });
   if (!email || !password) { throw new Error('You must provide an email and password.'); }
@@ -59,4 +79,4 @@ function login({ email, password, info }) {
   });
 }
 
-module.exports = { signup, login };
+module.exports = { signup, login, changePassword };

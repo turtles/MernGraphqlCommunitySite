@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
+import NotificationError from '../../../Errors/NotificationError';
 import query from '../../../../graphql/queries/CurrentUser';
 import mutation from '../../../../graphql/mutations/ChangePassword';
 
@@ -20,13 +21,19 @@ class ChangePassword extends Component {
     this.onChangeNewPassword = this.onChangeNewPassword.bind(this);
     this.onChangeConfirmNewPassword = this.onChangeConfirmNewPassword.bind(this);
   }
+  showError(message) {
+    this.setState({ errors: [message] });
+  }
+  clearErrors() {
+    this.setState({ errors:null });
+  }
   onSubmit(e) {
     e.preventDefault();
+    this.clearErrors();
 
     if (this.state.newPassword !== this.state.confirmNewPassword)
     {
-      
-
+      this.showError("Passwords do not match.");
       return;
     }
 
@@ -52,7 +59,7 @@ class ChangePassword extends Component {
   }
   render() {
     return (
-      <Form>
+      <Form onSubmit={this.onSubmit}>
         <legend>Change Password</legend>
         <FormGroup>
           <Label for="inputCurrentPassword">Current Password</Label>
@@ -78,7 +85,8 @@ class ChangePassword extends Component {
             onChange={this.onChangeConfirmNewPassword}
             />
         </FormGroup>
-        <Button color="primary">Submit</Button>
+        <Button type="submit" color="primary">Submit</Button>
+        <NotificationError errors={this.state.errors}/>
       </Form>
     );
   }
