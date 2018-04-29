@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import query from '../../../../graphql/queries/CurrentUser';
-import mutation from '../../../../graphql/mutations/UpdateUserInfo';
+import mutation from '../../../../graphql/mutations/UpdateDisplayName';
 
 class BasicInformation extends Component {
   constructor(props) {

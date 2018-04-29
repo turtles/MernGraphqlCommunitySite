@@ -45,37 +45,18 @@ const mutation = new GraphQLObjectType({
         return AuthService.login({ email, password, info });
       }
     },
-    updateUserInfo: {
+    updateDisplayName: {
       type: UserType,
       args: {
-        email: { type: GraphQLString },
-        password: { type: GraphQLString },
         displayName: { type: GraphQLString }
       },
-      // resolve(parentValue, { email, displayName }, info) {
-      //   const { user } = info;
-      //   if (!user) {
-      //     return null;
-      //   }
-      //   User.findOne( { email },
-      //     function(err, userModel) {
-      //         userModel.displayName = displayName;
-      //         userModel.save();
-      //     }
-      //   );
-      // }
       resolve(parentValue, { displayName }, info) {
         const { user } = info;
         if (!user) {
           return null;
         }
-        // TODO: use email from args
-        User.findOne( { email: 'test@example.com' },
-          function(err, userModel) {
-              userModel.displayName = displayName;
-              userModel.save();
-          }
-        );
+        user.displayName = displayName;
+        user.save();
       }
     },
     changePassword: {
@@ -90,9 +71,9 @@ const mutation = new GraphQLObjectType({
           return null;
         }
         console.log(currentPassword,newPassword);
-        
+
       }
-    }
+    },
     submitArticle: {
       type: ArticleType,
       args: {
