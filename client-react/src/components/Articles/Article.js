@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import query from '../../graphql/queries/FindArticle';
 
-import NotificationError from '../Errors/NotificationError';
+import ErrorList from '../Errors/ErrorList';
 import ViewCounter from './ViewCounter';
 
 class Article extends Component {
   render() {
     const { loading, error } = this.props.data;
     if (loading) return <div/>;
-    else if (error) return <NotificationError error={error}/>;
+    else if (error) return <ErrorList error={error}/>;
 
     const { title, body, views } = this.props.data.article;
     return (

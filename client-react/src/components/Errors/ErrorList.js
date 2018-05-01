@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class NotificationError extends Component {
+class ErrorList extends Component {
   render() {
     if (this.props.error) {
       return (<li>{this.props.error}</li>);
@@ -16,4 +16,4 @@ class NotificationError extends Component {
   }
 }
 
-export default NotificationError;
+export default ErrorList;

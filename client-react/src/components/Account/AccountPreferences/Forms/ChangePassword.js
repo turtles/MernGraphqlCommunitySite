@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
-import NotificationError from '../../../Errors/NotificationError';
+import ErrorList from '../../../Errors/ErrorList';
 import query from '../../../../graphql/queries/CurrentUser';
 import mutation from '../../../../graphql/mutations/ChangePassword';
 
@@ -86,7 +86,7 @@ class ChangePassword extends Component {
             />
         </FormGroup>
         <Button type="submit" color="primary">Submit</Button>
-        <NotificationError errors={this.state.errors}/>
+        <ErrorList errors={this.state.errors}/>
       </Form>
     );
   }

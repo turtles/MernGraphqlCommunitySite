@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 
 import AuthForm from './AuthForm';
-import NotificationError from '../../Errors/NotificationError';
+import ErrorList from '../../Errors/ErrorList';
 
 import query from '../../../graphql/queries/CurrentUser';
 import mutation from '../../../graphql/mutations/RegisterUser';
@@ -40,7 +40,7 @@ class RegisterForm extends Component {
           onSubmit={this.onSubmit.bind(this)}
           onError={this.onError.bind(this)}
         />
-        <NotificationError errors = {this.state.errors}/>
+        <ErrorList errors = {this.state.errors}/>
       </div>
     );
   }
