@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 
 import AuthForm from './AuthForm';
-import ErrorList from '../../Errors/ErrorList';
+import ErrorList from '../../Reusable/Errors/ErrorList';
 
 import query from '../../../graphql/queries/CurrentUser';
 import mutation from '../../../graphql/mutations/LoginUser';

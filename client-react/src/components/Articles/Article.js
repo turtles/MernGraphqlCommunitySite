@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import query from '../../graphql/queries/FindArticle';
 
-import ErrorList from '../Errors/ErrorList';
+import ErrorList from '../Reusable/Errors/ErrorList';
 import TagsList from '../Reusable/Tags/TagsList';
 import ViewCounter from './ViewCounter';
 

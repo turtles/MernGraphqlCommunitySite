@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 
 import SubmitArticleForm from './SubmitArticleForm';
-import RequiresLoginError from '../Errors/RequiresLogin';
+import RequiresLoginError from '../Reusable/Errors/RequiresLogin';
 import query from '../../graphql/queries/CurrentUser';
 
 class SubmitArticlePage extends Component {

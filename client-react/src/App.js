@@ -11,7 +11,7 @@ import Preferences from './components/Account/AccountPreferences/AccountPreferen
 import LoginForm from './components/Account/Login/LoginForm';
 import RegisterForm from './components/Account/Login/RegisterForm';
 import CreateContent from './components/Submit/SubmitArticlePage';
-import NotFound from './components/Errors/NotFound';
+import NotFound from './components/Reusable/Errors/NotFound';
 import ArticlesPage from './components/Articles/ArticlesPage';
 
 class App extends Component {
