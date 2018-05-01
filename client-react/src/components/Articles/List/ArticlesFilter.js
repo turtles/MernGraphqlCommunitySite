@@ -21,7 +21,7 @@ class ArticlesFilter extends Component {
   onSubmit(e){
     e.preventDefault();
 
-    const route = `/articles/search/${this.state.textSearch}/${this.state.sortBy}`;
+    const route = `/articles/search/${this.state.textSearch}/+/${this.state.sortBy}`;
     this.props.history.push(route);
   }
   onChangeTextSearch(e) {

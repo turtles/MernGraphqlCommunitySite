@@ -35,10 +35,12 @@ class ArticlesList extends Component {
 export default graphql(query, {
   options:
     (props) => {
-      if (!props.textSearch) return {variables: {}};
+      if (!props.hasSearchFilter) return {variables: {}};
       return {
         variables: {
           textSearch: props.textSearch,
+          tags: props.tags,
+          sortBy: props.sortBy
         }
       }
     }

@@ -25,9 +25,9 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route path="/dashboard" component={Dashboard}/>
             <Route path="/preferences/:subroute?" component={Preferences}/>
+            <Route exact path="/articles" component={ArticlesPage}/>
             <Route path="/articles/view/:id?" component={ArticlesPage}/>
-            <Route path="/articles/search/:textSearch?/:sortBy?" component={ArticlesPage}/>
-            <Route path="/articles" component={ArticlesPage}/>
+            <Route path="/articles/search/:textSearch?/:tags?/:sortBy?" component={ArticlesPage}/>
             <Route path="/submit" component={CreateContent}/>
             <Route path="/login" component={LoginForm}/>
             <Route path="/register" component={RegisterForm}/>
