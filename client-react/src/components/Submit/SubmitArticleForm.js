@@ -7,7 +7,7 @@ import { graphql } from 'react-apollo';
 
 import mutation from '../../graphql/mutations/SubmitArticle';
 
-class SubmitContentForm extends Component {
+class SubmitArticleForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,4 +57,4 @@ class SubmitContentForm extends Component {
   }
 }
 
-export default graphql(mutation)(SubmitContentForm);
+export default graphql(mutation)(SubmitArticleForm);

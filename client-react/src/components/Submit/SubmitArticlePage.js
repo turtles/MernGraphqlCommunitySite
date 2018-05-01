@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 
-import SubmitContentForm from './SubmitContentForm';
+import SubmitArticleForm from './SubmitArticleForm';
 import RequiresLoginError from '../Errors/RequiresLogin';
 import query from '../../graphql/queries/CurrentUser';
 
-class SubmitContent extends Component {
+class SubmitArticlePage extends Component {
   constructor(props) {
     super(props);
     this.authenticateThenRender = this.authenticateThenRender.bind(this);
@@ -34,12 +34,12 @@ class SubmitContent extends Component {
     return (
       <div>
         <h3>Submit an Article</h3>
-        <SubmitContentForm/>
+        <SubmitArticleForm/>
       </div>
     );
   }
 }
 
 export default graphql(query)(
-  SubmitContent
+  SubmitArticlePage
 );

@@ -8,7 +8,7 @@ import Dashboard from './components/Dashboard';
 import Preferences from './components/Account/AccountPreferences/AccountPreferences';
 import LoginForm from './components/Account/Login/LoginForm';
 import RegisterForm from './components/Account/Login/RegisterForm';
-import CreateContent from './components/Submit/SubmitContent';
+import CreateContent from './components/Submit/SubmitArticlePage';
 import NotFound from './components/Errors/NotFound';
 import ArticlesPage from './components/Articles/ArticlesPage';
 
