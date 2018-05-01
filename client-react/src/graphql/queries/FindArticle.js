@@ -7,6 +7,7 @@ export default gql`
       title
       body
       views
+      tags
     }
   }
 `;

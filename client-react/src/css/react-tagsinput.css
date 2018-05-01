@@ -1,4 +1,4 @@
-.react-tagsinput {
+.tag-group-readonly, .react-tagsinput {
   padding-left: 5px;
   padding-top: 5px;
 
@@ -9,7 +9,7 @@
   border-color: #a5d24a;
 }
 
-.react-tagsinput-tag {
+.tag-readonly, .react-tagsinput-tag {
   background-color: #cbe4ff;
   border-radius: 8px;
   border: 1px solid #006b9a;

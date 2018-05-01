@@ -3,6 +3,7 @@ import { graphql } from 'react-apollo';
 import query from '../../graphql/queries/FindArticle';
 
 import ErrorList from '../Errors/ErrorList';
+import TagsList from '../Reusable/Tags/TagsList';
 import ViewCounter from './ViewCounter';
 
 class Article extends Component {
@@ -11,12 +12,13 @@ class Article extends Component {
     if (loading) return <div/>;
     else if (error) return <ErrorList error={error}/>;
 
-    const { title, body, views } = this.props.data.article;
+    const { title, body, views, tags } = this.props.data.article;
     return (
       <div>
         <h3>{title}</h3>
         <p>{body}</p>
         <ViewCounter views={views}/>
+        <TagsList tags={tags}/>
       </div>
     );
   }
