@@ -14,11 +14,13 @@ class SubmitArticleForm extends Component {
       owner: '',
       title: '',
       body: '',
-      tags: [],
+      tags: []
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.onChangeTags = this.onChangeTags.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeBody = this.onChangeBody.bind(this);
   }
-  handleChange(tags) {
+  onChangeTags(tags) {
     this.setState({tags});
   }
   onSubmit(e) {
@@ -36,21 +38,26 @@ class SubmitArticleForm extends Component {
       this.setState({ errors });
     });
   }
-
+  onChangeTitle(e) {
+    this.setState({title: e.target.value});
+  }
+  onChangeBody(e) {
+    this.setState({body: e.target.value});
+  }
   render() {
     return (
       <div>
         <Form onSubmit={this.onSubmit.bind(this)}>
           <FormGroup>
             <Label for="inputTitle">Title</Label>
-            <Input type="text" name="title" id="inputTitle" onChange={e=>this.setState({title: e.target.value})}/>
+            <Input type="text" name="title" id="inputTitle" onChange={this.onChangeTitle}/>
           </FormGroup>
           <FormGroup>
             <Label for="inputBody">Content</Label>
-            <Input type="textarea" name="body" id="inputBody" onChange={e=>this.setState({body: e.target.value})}/>
+            <Input type="textarea" name="body" id="inputBody" onChange={this.onChangeBody}/>
           </FormGroup>
-          <TagsInput value={this.state.tags} onChange={this.handleChange} />
-          <Button color="primary" type="submit">Submit</Button>
+          <TagsInput value={this.state.tags} onChange={this.onChangeTags} addKeys={[9, 13, 186, 188]} onlyUnique />
+          <Button type="submit" color="primary">Submit</Button>
         </Form>
       </div>
     );

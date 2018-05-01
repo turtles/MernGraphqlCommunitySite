@@ -1,3 +1,5 @@
+import './css/react-tagsinput.css';
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
