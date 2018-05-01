@@ -1,1 +1,0 @@
-Email verification route on client side (currently, the server must be accessed directly to verify accounts)
