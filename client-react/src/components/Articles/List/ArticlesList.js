@@ -3,6 +3,8 @@ import { graphql } from 'react-apollo';
 import { withRouter, Link } from 'react-router-dom';
 
 import Listing from './Listing';
+import PaginationControl from '../../Reusable/PaginationControl';
+
 import query from '../../../graphql/queries/FindArticles';
 
 class ArticlesList extends Component {
@@ -27,6 +29,7 @@ class ArticlesList extends Component {
     return (
       <div>
         {articlesList}
+        <PaginationControl/>
       </div>
     );
   }
