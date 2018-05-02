@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardTitle, CardText, Badge} from 'reactstrap';
+import {Card, CardBody, CardTitle, CardText} from 'reactstrap';
 import {Link} from 'react-router-dom'
 
 import TagsList from '../../Reusable/Tags/TagsList';

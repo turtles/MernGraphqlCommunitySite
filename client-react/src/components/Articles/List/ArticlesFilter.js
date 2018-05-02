@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   Row, Col,
-  Form, FormGroup, Input, Button
+  Form, Input, Button
 } from 'reactstrap'
 import { withRouter } from 'react-router-dom';
 
