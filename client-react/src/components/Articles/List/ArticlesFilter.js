@@ -11,7 +11,7 @@ class ArticlesFilter extends Component {
 
     this.state = {
       textSearch: '',
-      sortBy: 'newest'
+      sortBy: 'new'
     }
 
     this.onSubmit=this.onSubmit.bind(this);

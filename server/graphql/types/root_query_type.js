@@ -55,7 +55,7 @@ const RootQueryType = new GraphQLObjectType({
         if (args.textSearch && args.textSearch.length<3) {
           delete args.textSearch;
         }
-        const sortBy = args.sortBy;
+        let sortBy = args.sortBy;
         delete args.sortBy;
         if (args.textSearch) {
           // Search title and body for this string
@@ -81,12 +81,23 @@ const RootQueryType = new GraphQLObjectType({
             };
           }
         }
-        console.log(args);
+
+        switch (sortBy) {
+          case "popular":
+            sortBy = "-views";
+            break;
+          case "oldest":
+            sortBy = "created";
+            break;
+          default: // Newest
+            sortBy = "-created";
+        }
+
         return new Promise((resolve, reject) => {
-          Article.find(args, (err, articles) => {
+          Article.find(args).sort(sortBy).find((err, articles) => {
             if (err) reject(err);
             resolve(articles);
-          })
+          });
         })
       }
     },
