@@ -13,7 +13,7 @@ class PaginationControl extends Component {
   renderSinglePaginationItem(page) {
     if (page === this.props.activePage) {
       return (
-        <PaginationItem active>
+        <PaginationItem key={page} active>
           <PaginationLink href="#">
             {page}
           </PaginationLink>
@@ -21,7 +21,7 @@ class PaginationControl extends Component {
       );
     } else {
       return (
-        <PaginationItem>
+        <PaginationItem key={page}>
           <PaginationLink href={`${this.state.route}${page}`}>
             {page}
           </PaginationLink>
@@ -31,11 +31,11 @@ class PaginationControl extends Component {
   }
   renderLeftArrow(disabled) {
     return disabled ? (
-      <PaginationItem disabled>
+      <PaginationItem key={-2} disabled>
         <PaginationLink previous href="#" />
       </PaginationItem>
     ) : (
-      <PaginationItem>
+      <PaginationItem key={-2}>
         <PaginationLink previous
           href={`${this.state.route}${this.props.activePage-1}`} />
       </PaginationItem>
@@ -43,11 +43,11 @@ class PaginationControl extends Component {
   }
   renderRightArrow(disabled) {
     return disabled ? (
-      <PaginationItem disabled>
+      <PaginationItem key={-1} disabled>
         <PaginationLink next href="#" />
       </PaginationItem>
     ) : (
-      <PaginationItem>
+      <PaginationItem key={-1}>
         <PaginationLink next
           href={`${this.state.route}${this.props.activePage+1}`} />
       </PaginationItem>
@@ -80,7 +80,7 @@ class PaginationControl extends Component {
   }
 }
 
-PaginationControl.PropTypes = {
+PaginationControl.propTypes = {
   pages: PropTypes.number,
   activePages: PropTypes.number
 };
