@@ -7,38 +7,72 @@ export default class PaginationControl extends Component {
 
     this.state = {
       pages: 8,
-      activePage: 3,
+      activePage: this.props.activePage,
       route: '/articles/'
     }
   }
-
-  renderPaginationItems() {
-    let paginations = [];
-    let current;
-    // Left arrow
-    paginations.push(
-      <PaginationItem>
-        <PaginationLink previous href="#" />
-      </PaginationItem>
-    );
-    for (let i = 0; i < this.state.pages; ++i) {
-      current = i+1; // + start page
-      paginations.push(
-        <PaginationItem>
-          <PaginationLink href={(current === this.state.activePage) ? "#" : `${this.state.route}${current}`}>
-            {current}
+  renderSinglePaginationItem(page) {
+    if (page === this.state.activePage) {
+      return (
+        <PaginationItem active>
+          <PaginationLink href="#">
+            {page}
           </PaginationLink>
         </PaginationItem>
-      )
+      );
+    } else {
+      return (
+        <PaginationItem>
+          <PaginationLink href={`${this.state.route}${page}`}>
+            {page}
+          </PaginationLink>
+        </PaginationItem>
+      );
     }
-    paginations.push(
-      <PaginationItem>
-        <PaginationLink next href="#" />
-      </PaginationItem>
-    );
-    paginations[this.state.activePage].active = true;
-    paginations[0].disabled = this.state.activePage===1;
-    paginations[this.state.pages+1].disabled = this.state.activePage===this.state.pages;
+  }
+  renderPaginationItems() {
+    const { activePage } = this.state;
+    let paginations = [];
+
+    let leftArrow;
+    if (activePage === 1) {
+      leftArrow = (
+        <PaginationItem disabled>
+          <PaginationLink previous href="#" />
+        </PaginationItem>
+      );
+    } else {
+      leftArrow = (
+        <PaginationItem>
+          <PaginationLink next href={`${this.state.route}${activePage-1}`} />
+        </PaginationItem>
+      );
+    }
+    paginations.push(leftArrow);
+
+    // Numbers (middle items)
+    for (let i = 0; i < this.state.pages; ++i) {
+      paginations.push(
+        this.renderSinglePaginationItem(i+1)
+      );
+    }
+
+    let rightArrow;
+    if (activePage === this.state.pages) {
+      rightArrow = (
+        <PaginationItem disabled>
+          <PaginationLink next href="#" />
+        </PaginationItem>
+      )
+    } else {
+      rightArrow = (
+        <PaginationItem>
+          <PaginationLink next href={`${this.state.route}${activePage+1}`} />
+        </PaginationItem>
+      );
+    }
+    paginations.push(rightArrow);
+
     return paginations;
   }
   render() {
