@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MiniArticleListing = ({id, title}) => (
+const MiniArticlesList = ({id, title}) => (
   <Link to={`/articles/view/${id}`}>{title}</Link>
 );
 
-export default MiniArticleListing;
+export default MiniArticlesList;

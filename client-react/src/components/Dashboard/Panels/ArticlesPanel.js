@@ -3,7 +3,7 @@ import { Row } from 'reactstrap';
 import { graphql } from 'react-apollo';
 
 import PanelTitle from './PanelTitle';
-import MiniArticleListing from './MiniArticleListing';
+import MiniArticlesList from './MiniArticlesList';
 
 import query from '../../../graphql/queries/FindArticles';
 
@@ -29,7 +29,7 @@ class ArticlesPanel extends Component {
         {
           this.props.data.articles.map((article, id)=>(
             <Row key={id}>
-              <MiniArticleListing
+              <MiniArticlesList
                 title={article.title}
                 id={article.id}
                 />
