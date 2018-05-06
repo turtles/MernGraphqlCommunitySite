@@ -18,19 +18,19 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Container className="App">
+        <Container className='App'>
           <Header />
 
           <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/dashboard" component={Dashboard}/>
-            <Route path="/preferences/:subroute?" component={Preferences}/>
-            <Route exact path="/articles" component={ArticlesPage}/>
-            <Route path="/articles/view/:id?" component={ArticlesPage}/>
-            <Route path="/articles/search/:textSearch?/:tags?/:sortBy?" component={ArticlesPage}/>
-            <Route path="/submit" component={CreateContent}/>
-            <Route path="/login" component={LoginForm}/>
-            <Route path="/register" component={RegisterForm}/>
+            <Route exact path='/' component={Home}/>
+            <Route path='/dashboard' component={Dashboard}/>
+            <Route path='/preferences/:subroute?' component={Preferences}/>
+            <Route exact path='/articles/:page?' component={ArticlesPage}/>
+            <Route path='/articles/view/:id?' component={ArticlesPage}/>
+            <Route path='/articles/search/:textSearch?/:tags?/:sortBy?/:page?' component={ArticlesPage}/>
+            <Route path='/submit' component={CreateContent}/>
+            <Route path='/login' component={LoginForm}/>
+            <Route path='/register' component={RegisterForm}/>
             <Route component={NotFound}/>
           </Switch>
         </Container>
