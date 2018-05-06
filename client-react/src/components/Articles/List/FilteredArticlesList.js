@@ -9,38 +9,50 @@ class FilteredArticlesList extends Component {
     super(props);
     const hasSearchFilter = this.props.match.path.startsWith("/articles/search");
     if (hasSearchFilter) {
-      const { textSearch, tags, sortBy } = this.props.match.params;
+      const { textSearch, tags, sortBy, page } = this.props.match.params;
       this.state = {
         hasSearchFilter,
         textSearch: this.formatTextSearch(textSearch),
         tags: this.formatTagsFromRoute(tags),
-        sortBy
+        sortBy,
+        page: this.formatPage(page)
       }
     } else {
-      this.state = { hasSearchFilter: false };
+      const { page } = this.props.match.params;
+      this.state = {
+        hasSearchFilter: false,
+        page: this.formatPage(page)
+      };
     }
     this.showList = this.showList.bind(this);
+  }
+  formatPage(page) {
+
+    return (page) ? parseInt(page, 10) : 1;
   }
   formatTextSearch(textSearch) {
     return textSearch;
   }
   formatTagsFromRoute(tags) {
-    if (!tags) return '';
-    return tags.split('+');
+    return (tags) ? tags.split('+') : '';
   }
   showList() {
     if (this.state.hasSearchFilter) {
-      console.log(this.state);
       return (
         <ArticlesList
           hasSearchFilter={this.state.hasSearchFilter}
           textSearch={this.state.textSearch}
           tags={this.state.tags}
           sortBy={this.state.sortBy}
+          page={this.state.page}
           />
       );
     } else {
-      return <ArticlesList/>
+      return (
+        <ArticlesList
+          page={this.state.page}
+          />
+      );
     }
   }
   render() {

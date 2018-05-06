@@ -4,11 +4,13 @@ const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLList,
-  GraphQLString
+  GraphQLString,
+  GraphQLFloat
 } = graphql;
 
 const UserType = require('./user_type');
 const ArticleType = require('./article_type');
+const ArticleFeedType = require('./article_feed_type');
 
 const Article = mongoose.model('article');
 
@@ -37,6 +39,87 @@ const RootQueryType = new GraphQLObjectType({
             resolve(articles);
           })
         })
+      }
+    },
+    articleFeed: {
+      type: ArticleFeedType,
+      args: {
+        owner: { type: GraphQLString },
+        title: { type: GraphQLString },
+        textSearch: { type: GraphQLString },
+        tags: { type: new GraphQLList(GraphQLString) },
+        sortBy: { type: GraphQLString },
+        cursor: { type: GraphQLFloat },
+        pageLength: { type: GraphQLFloat }
+      },
+      resolve(parentValue, args, req) {
+        console.log(args);
+        const cursor = args.cursor ? args.cursor : 0;
+        const pageLength = args.pageLength ? args.pageLength : 10;
+        delete args.cursor;
+        delete args.pageLength;
+
+        if (args.owner) {
+            args.owner = mongoose.Types.ObjectId(args.owner);
+        }
+        if (args.textSearch && args.textSearch.length<3) {
+          delete args.textSearch;
+        }
+        let sortBy = args.sortBy;
+        delete args.sortBy;
+        if (args.textSearch) {
+          // Search title and body for this string
+          args.title = args.body = {
+            "$regex": args.textSearch,
+            "$options": "i"
+          };
+          delete args.textSearch;
+        }
+        if (args.tags) {
+          // Remove tags that are too short
+          args.tags = args.tags.filter(tag => tag.length > 1);
+          // Limit number of tags
+          if (args.tags.length > 4) {
+            args.tags = args.tags.slice(0, 5);
+          }
+          if (args.tags.length === 0) {
+            delete args.tags;
+          }
+          else {
+            args.tags = {
+              "$all": args.tags
+            };
+          }
+        }
+
+        switch (sortBy) {
+          case "popular":
+            sortBy = "-views";
+            break;
+          case "oldest":
+            sortBy = "created";
+            break;
+          default: // Newest
+            sortBy = "-created";
+        }
+        console.log(args);
+        return new Promise(function (resolve, reject) {
+          (function (pageLength, cursor) {
+            Article.find(args).sort(sortBy).find(function (err, articles) {
+              if (err) reject(err);
+
+              const numPages = Math.ceil(articles.length / pageLength);
+              articles = articles.slice(numPages * cursor, pageLength);
+
+              let articleFeed = {
+                cursor,
+                numPages,
+                feed: articles
+              };
+              resolve(articleFeed);
+            });
+          })(pageLength, cursor);
+        });
       }
     },
     articles: {

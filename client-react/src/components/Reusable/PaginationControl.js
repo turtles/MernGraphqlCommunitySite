@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 class PaginationControl extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      route: '/articles/'
-    }
+  getPath() {
+    return this.props.location.pathname;
   }
   renderSinglePaginationItem(page) {
     if (page === this.props.activePage) {
@@ -22,7 +19,7 @@ class PaginationControl extends Component {
     } else {
       return (
         <PaginationItem key={page}>
-          <PaginationLink href={`${this.state.route}${page}`}>
+          <PaginationLink href={`${this.getPath()}${page}`}>
             {page}
           </PaginationLink>
         </PaginationItem>
@@ -37,7 +34,7 @@ class PaginationControl extends Component {
     ) : (
       <PaginationItem key={-2}>
         <PaginationLink previous
-          href={`${this.state.route}${this.props.activePage-1}`} />
+          href={`${this.getPath()}}${this.props.activePage-1}`} />
       </PaginationItem>
     );
   }
@@ -49,7 +46,7 @@ class PaginationControl extends Component {
     ) : (
       <PaginationItem key={-1}>
         <PaginationLink next
-          href={`${this.state.route}${this.props.activePage+1}`} />
+          href={`${this.getPath()}}${this.props.activePage+1}`} />
       </PaginationItem>
     )
   }
@@ -90,4 +87,4 @@ PaginationControl.defaultProps = {
   activePage: 1
 }
 
-export default PaginationControl;
+export default withRouter(PaginationControl);
