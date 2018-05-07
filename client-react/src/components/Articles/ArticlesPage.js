@@ -13,7 +13,6 @@ class ArticlesPage extends Component {
     return (
       <div>
         <h1>Browse All Articles</h1>
-
         <FilteredArticlesList/>
       </div>
     );
