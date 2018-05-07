@@ -5,7 +5,19 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 class PaginationControl extends Component {
   getPath() {
-    return this.props.location.pathname;
+    const { pathname } = this.props.location;
+    const { activePage } = this.props;
+
+    let path = pathname;
+    if (path.endsWith(`/${activePage}`)) {
+        path = path.substring(0, path.lastIndexOf('/') + 1);
+        console.log(path);
+    }
+    else if (!path.endsWith('/')) {
+      path = `${path}/`;
+    }
+    
+    return path;
   }
   renderSinglePaginationItem(page) {
     if (page === this.props.activePage) {
@@ -34,7 +46,7 @@ class PaginationControl extends Component {
     ) : (
       <PaginationItem key={-2}>
         <PaginationLink previous
-          href={`${this.getPath()}}${this.props.activePage-1}`} />
+          href={`${this.getPath()}${this.props.activePage-1}`} />
       </PaginationItem>
     );
   }
@@ -46,7 +58,7 @@ class PaginationControl extends Component {
     ) : (
       <PaginationItem key={-1}>
         <PaginationLink next
-          href={`${this.getPath()}}${this.props.activePage+1}`} />
+          href={`${this.getPath()}${this.props.activePage+1}`} />
       </PaginationItem>
     )
   }
