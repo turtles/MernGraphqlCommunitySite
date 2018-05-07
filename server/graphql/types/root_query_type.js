@@ -53,7 +53,6 @@ const RootQueryType = new GraphQLObjectType({
         pageLength: { type: GraphQLFloat }
       },
       resolve(parentValue, args, req) {
-        console.log(args);
         const cursor = args.cursor ? args.cursor : 0;
         const pageLength = args.pageLength ? args.pageLength : 10;
         delete args.cursor;
@@ -98,7 +97,6 @@ const RootQueryType = new GraphQLObjectType({
           default: // Newest
             sortBy = "-created";
         }
-        console.log(args);
         return new Promise(function (resolve, reject) {
           (function (pageLength, cursor) {
             Article.find(args).sort(sortBy).find(function (err, articles) {
