@@ -36,7 +36,7 @@ class ArticlesFilter extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='articles-searchbox'>
         <h4>Search articles</h4>
           <Form onSubmit={this.onSubmit}>
             <Row>

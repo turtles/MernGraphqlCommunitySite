@@ -1,3 +1,4 @@
+import './css/main.css';
 import './css/react-tagsinput.css';
 
 import React, { Component } from 'react';
