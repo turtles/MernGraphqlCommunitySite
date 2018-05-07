@@ -59,7 +59,8 @@ export default graphql(query, {
   options:
     (props) => {
       if (!props.hasSearchFilter) return {variables: {
-        cursor: parseInt(props.page, props.pageLength)-1
+        cursor: parseInt(props.page, 10) - 1,
+        pageLength: props.pageLength
       }};
       return {
         variables: {
