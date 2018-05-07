@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo';
 import PanelTitle from './PanelTitle';
 import MiniArticlesList from './MiniArticlesList';
 
-import query from '../../../graphql/queries/FindArticles';
+import query from '../../../graphql/queries/GetArticleFeed';
 
 class ArticlesPanel extends Component {
   constructor(props) {
@@ -24,10 +24,11 @@ class ArticlesPanel extends Component {
     if (this.props.data.loading) {
       return <div/>
     }
+    const { feed } = this.props.data.articleFeed;
     return (
       <div>
         {
-          this.props.data.articles.map((article, id)=>(
+          feed.map((article, id)=>(
             <Row key={id}>
               <MiniArticlesList
                 title={article.title}
@@ -48,6 +49,8 @@ export default graphql(query, {
       return {
         variables: {
           owner: props.owner,
+          cursor: 0,
+          pageLength: 10
         }
       }
     }

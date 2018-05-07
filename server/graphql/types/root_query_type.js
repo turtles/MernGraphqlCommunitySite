@@ -116,64 +116,6 @@ const RootQueryType = new GraphQLObjectType({
         });
       }
     },
-    articles: {
-      type: new GraphQLList(ArticleType),
-      args: {
-        owner: { type: GraphQLString },
-        title: { type: GraphQLString },
-        textSearch: { type: GraphQLString },
-        tags: { type: new GraphQLList(GraphQLString) },
-        sortBy: { type: GraphQLString }
-      },
-      resolve(parentValue, args, req) {
-        if (args.owner) {
-            args.owner = mongoose.Types.ObjectId(args.owner);
-        }
-        if (args.textSearch && args.textSearch.length<3) {
-          delete args.textSearch;
-        }
-        let sortBy = args.sortBy;
-        delete args.sortBy;
-        if (args.textSearch) {
-          // Search title and body for this string
-          args.title = args.body = {
-            "$regex": args.textSearch,
-            "$options": "i"
-          };
-          delete args.textSearch;
-        }
-        if (args.tags) {
-          // Remove tags that are too short
-          args.tags = args.tags.filter(tag => tag.length > 1);
-          if (args.tags.length === 0) {
-            delete args.tags;
-          }
-          else {
-            args.tags = {
-              "$all": args.tags
-            };
-          }
-        }
-
-        switch (sortBy) {
-          case "popular":
-            sortBy = "-views";
-            break;
-          case "oldest":
-            sortBy = "created";
-            break;
-          default: // Newest
-            sortBy = "-created";
-        }
-
-        return new Promise((resolve, reject) => {
-          Article.find(args).sort(sortBy).find((err, articles) => {
-            if (err) reject(err);
-            resolve(articles);
-          });
-        })
-      }
-    },
     article: {
       type: ArticleType,
       args: {
