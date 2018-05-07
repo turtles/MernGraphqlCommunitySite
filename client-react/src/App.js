@@ -23,7 +23,7 @@ class App extends Component {
           <Header />
 
           <Switch>
-            <Route exact path='/:page?' component={Home}/>
+            <Route exact path='/' component={Home}/>
             <Route path='/dashboard' component={Dashboard}/>
             <Route path='/preferences/:subroute?' component={Preferences}/>
             <Route exact path='/articles/:page?' component={ArticlesPage}/>
@@ -32,6 +32,7 @@ class App extends Component {
             <Route path='/submit' component={CreateContent}/>
             <Route path='/login' component={LoginForm}/>
             <Route path='/register' component={RegisterForm}/>
+            <Route path='/:page' component={Home}/>
             <Route component={NotFound}/>
           </Switch>
         </Container>
