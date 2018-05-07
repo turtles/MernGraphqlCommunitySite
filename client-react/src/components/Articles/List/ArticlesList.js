@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -40,11 +41,25 @@ class ArticlesList extends Component {
   }
 }
 
+ArticlesList.defaultProps = {
+  page: 1,
+  pageLength: 10,
+};
+
+ArticlesList.propTypes = {
+  page: PropTypes.number,
+  pageLength: PropTypes.number,
+  hasSearchFilter: PropTypes.bool,
+  textSearch: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string),
+  sortBy: PropTypes.string,
+}
+
 export default graphql(query, {
   options:
     (props) => {
       if (!props.hasSearchFilter) return {variables: {
-        cursor: parseInt(props.page, 10)-1
+        cursor: parseInt(props.page, props.pageLength)-1
       }};
       return {
         variables: {
@@ -52,7 +67,7 @@ export default graphql(query, {
           tags: props.tags,
           sortBy: props.sortBy,
           cursor: props.page-1,
-          pageLength: 5
+          pageLength: props.pageLength
         }
       }
     }

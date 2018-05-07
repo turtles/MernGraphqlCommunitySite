@@ -23,7 +23,7 @@ class App extends Component {
           <Header />
 
           <Switch>
-            <Route exact path='/' component={Home}/>
+            <Route exact path='/:page?' component={Home}/>
             <Route path='/dashboard' component={Dashboard}/>
             <Route path='/preferences/:subroute?' component={Preferences}/>
             <Route exact path='/articles/:page?' component={ArticlesPage}/>
