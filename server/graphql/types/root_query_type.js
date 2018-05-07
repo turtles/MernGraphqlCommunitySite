@@ -151,10 +151,6 @@ const RootQueryType = new GraphQLObjectType({
         if (args.tags) {
           // Remove tags that are too short
           args.tags = args.tags.filter(tag => tag.length > 1);
-          // Limit number of tags
-          if (args.tags.length > 4) {
-            args.tags = args.tags.slice(0, 5);
-          }
           if (args.tags.length === 0) {
             delete args.tags;
           }
