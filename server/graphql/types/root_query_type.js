@@ -103,10 +103,8 @@ const RootQueryType = new GraphQLObjectType({
           (function (pageLength, cursor) {
             Article.find(args).sort(sortBy).find(function (err, articles) {
               if (err) reject(err);
-
               const numPages = Math.ceil(articles.length / pageLength);
-              articles = articles.slice(numPages * cursor, pageLength);
-
+              articles = articles.slice(pageLength * cursor, pageLength * cursor + pageLength);
               let articleFeed = {
                 cursor,
                 numPages,
