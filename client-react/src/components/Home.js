@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
   render() {
-    const { page } = this.props.match.params;
+    const page = parseInt(this.props.match.params.page, 10);
     return (
       <div>
         <ArticlesList page={page ? page : 1} />
