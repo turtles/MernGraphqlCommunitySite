@@ -12,6 +12,7 @@ const UserType = require('./user_type');
 const ArticleType = require('./article_type');
 const ArticleFeedType = require('./article_feed_type');
 
+const User = mongoose.model('user');
 const Article = mongoose.model('article');
 
 const RootQueryType = new GraphQLObjectType({
@@ -19,7 +20,20 @@ const RootQueryType = new GraphQLObjectType({
   fields: {
     user: {
       type: UserType,
+      args: {
+        id: { type: GraphQLID }
+      },
       resolve(parentValue, args, req) {
+        if (args.id) {
+          let _id = mongoose.Types.ObjectId(args.id);
+          return new Promise((resolve, reject) => {
+            User.findOne({ _id }, (err, user) => {
+              if (err) reject(err);
+              resolve(user);
+            });
+          });
+        }
+        // if id is not specified, get the logged in user
         return req.user;
       }
     },
@@ -34,10 +48,10 @@ const RootQueryType = new GraphQLObjectType({
             args.owner = mongoose.Types.ObjectId(args.owner);
         }
         return new Promise((resolve, reject) => {
-          Article.findOne(args,(err, articles) => {
+          Article.findOne(args,(err, article) => {
             if (err) reject(err);
-            resolve(articles);
-          })
+            resolve(article);
+          });
         })
       }
     },
