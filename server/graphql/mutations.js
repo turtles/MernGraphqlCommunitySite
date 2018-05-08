@@ -56,7 +56,7 @@ const mutation = new GraphQLObjectType({
           return null;
         }
         user.displayName = displayName;
-        user.save();
+        return user.save();
       }
     },
     changePassword: {
@@ -85,7 +85,7 @@ const mutation = new GraphQLObjectType({
         tags: { type: new GraphQLList(GraphQLString) }
       },
       resolve(parentValue, args, info) {
-        ArticlesService.createArticle(args);
+        return ArticlesService.createArticle(args);
       }
     }
   }

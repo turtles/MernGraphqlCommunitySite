@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import TagsInput from 'react-tagsinput'
 import { graphql } from 'react-apollo';
+import { withRouter } from 'react-router-dom';
 
 import mutation from '../../graphql/mutations/SubmitArticle';
 
@@ -23,19 +24,21 @@ class SubmitArticleForm extends Component {
   onChangeTags(tags) {
     this.setState({tags});
   }
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
 
-    this.props.mutate({
+    await this.props.mutate({
       variables: {
         owner: this.props.userId,
         title: this.state.title,
         body: this.state.body,
         tags: this.state.tags
       }
-    }).catch(res => {
-      const errors = res.graphQLErrors.map(error=>error.message);
-      this.setState({ errors });
+    }).then(({data}) => {
+        this.props.history.push(`/articles/view/${data.submitArticle.id}`);
+      }
+    ).catch(res => {
+      console.error(res);
     });
   }
   onChangeTitle(e) {
@@ -64,4 +67,6 @@ class SubmitArticleForm extends Component {
   }
 }
 
-export default graphql(mutation)(SubmitArticleForm);
+export default graphql(mutation)(
+  withRouter(SubmitArticleForm)
+);
