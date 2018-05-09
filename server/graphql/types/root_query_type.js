@@ -145,8 +145,11 @@ const RootQueryType = new GraphQLObjectType({
               article.views++;
               article.save();
             }
+          }).populate('owner', 'email').
+          exec((err, article) => {
+            if (err) reject(err);
             resolve(article);
-          })
+          });
         })
       }
     }

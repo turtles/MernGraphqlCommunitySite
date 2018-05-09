@@ -7,11 +7,13 @@ const {
   GraphQLList
 } = graphql;
 
+const UserType = require('./user_type');
+
 const ArticleType = new GraphQLObjectType({
   name: 'ArticleType',
   fields: {
     id: { type: GraphQLID },
-    owner: { type: GraphQLID },
+    owner: { type: UserType },
     title: { type: GraphQLString },
     body: { type: GraphQLString },
     views: { type: GraphQLInt },

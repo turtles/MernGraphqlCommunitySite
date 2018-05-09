@@ -88,7 +88,7 @@ const mutation = new GraphQLObjectType({
         if (!info.user) {
           throw new Error('You must be logged in to submit an article.');
         }
-        args.owner = info.user.id.toString();
+        args.owner = info.user;
         return ArticlesService.createArticle(args);
       }
     }

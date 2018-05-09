@@ -8,6 +8,9 @@ export default gql`
       body
       views
       tags
+      owner {
+        email
+      }
     }
   }
 `;

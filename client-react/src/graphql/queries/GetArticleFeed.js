@@ -24,7 +24,9 @@ export default gql`
         title
         body
         views
-        owner
+        owner {
+          email
+        }
         tags
       }
     }
