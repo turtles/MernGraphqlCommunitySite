@@ -14,8 +14,6 @@ class Article extends Component {
     else if (error) return <ErrorList error={error}/>;
 
     const { title, body, views, tags, owner } = this.props.data.article;
-    console.log(owner);
-    console.log(this.props.data.article);
     return (
       <div>
         <h3>{title}</h3>
