@@ -17,11 +17,13 @@ class Article extends Component {
     return (
       <div>
         <h3>{title}</h3>
-        <UserLink
-          email={owner.email}
-          displayName={owner.displayName}
-          id={owner.id}
-          />
+        <div>
+          By <UserLink
+            email={owner.email}
+            displayName={owner.displayName}
+            id={owner.id}
+            />
+        </div>
         <p>{body}</p>
         <ViewCounter views={views}/>
         <TagsList tags={tags}/>
