@@ -13,11 +13,11 @@ class ArticlesList extends Component {
     if (this.props.data.loading) {
       return <div/>;
     }
-    const { cursor, numPages, feed } = this.props.data.articleFeed;
-
-    if (!feed) {
+    const { articleFeed } = this.props.data;
+    if (!articleFeed || !articleFeed.feed || articleFeed.feed.length===0) {
       return (<div>No articles. Want to <Link to="/submit">submit one?</Link></div>);
     }
+    const { feed, cursor, numPages } = articleFeed;
 
     const articlesList = feed.map((article, id) => (
       <Listing
