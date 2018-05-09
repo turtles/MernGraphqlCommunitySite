@@ -85,6 +85,10 @@ const mutation = new GraphQLObjectType({
         tags: { type: new GraphQLList(GraphQLString) }
       },
       resolve(parentValue, args, info) {
+        if (!info.user) {
+          throw new Error('You must be logged in to submit an article.');
+        }
+        args.owner = info.user.id.toString();
         return ArticlesService.createArticle(args);
       }
     }

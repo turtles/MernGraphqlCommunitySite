@@ -11,7 +11,7 @@ const ArticleType = new GraphQLObjectType({
   name: 'ArticleType',
   fields: {
     id: { type: GraphQLID },
-    owner: { type: GraphQLString },
+    owner: { type: GraphQLID },
     title: { type: GraphQLString },
     body: { type: GraphQLString },
     views: { type: GraphQLInt },
