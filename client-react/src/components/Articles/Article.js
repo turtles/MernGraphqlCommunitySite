@@ -4,6 +4,7 @@ import query from '../../graphql/queries/FindArticle';
 
 import ErrorList from '../Reusable/Errors/ErrorList';
 import TagsList from '../Reusable/Tags/TagsList';
+import UserLink from '../Reusable/UserLink';
 import ViewCounter from './ViewCounter';
 
 class Article extends Component {
@@ -12,10 +13,17 @@ class Article extends Component {
     if (loading) return <div/>;
     else if (error) return <ErrorList error={error}/>;
 
-    const { title, body, views, tags } = this.props.data.article;
+    const { title, body, views, tags, owner } = this.props.data.article;
+    console.log(owner);
+    console.log(this.props.data.article);
     return (
       <div>
         <h3>{title}</h3>
+        <UserLink
+          email={owner.email}
+          displayName={owner.displayName}
+          id={owner.id}
+          />
         <p>{body}</p>
         <ViewCounter views={views}/>
         <TagsList tags={tags}/>

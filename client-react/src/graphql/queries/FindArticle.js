@@ -9,6 +9,8 @@ export default gql`
       views
       tags
       owner {
+        id
+        displayName
         email
       }
     }
