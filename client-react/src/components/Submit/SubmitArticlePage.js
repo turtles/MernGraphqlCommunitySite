@@ -33,7 +33,7 @@ class SubmitArticlePage extends Component {
   renderSubmitForm() {
     return (
       <div>
-        <h3>Submit an Article</h3>
+        <h1>Submit an Article</h1>
         <SubmitArticleForm/>
       </div>
     );

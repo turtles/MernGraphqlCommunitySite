@@ -27,7 +27,7 @@ class AccountPreferences extends Component {
   renderPreferences() {
     return (
       <div>
-        <h2>My Account</h2>
+        <h1>My Account</h1>
         <Row>
           <Col xs="2">
             <PreferencesNav/>
