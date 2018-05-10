@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Row, Col } from 'reactstrap';
 
 import query from '../../graphql/queries/FindUser';
+import ProfileArticlesList from './ProfileArticlesList';
+import UserDetails from './UserDetails';
 
-class ProfilePage extends React.Component {
-
+class ProfilePage extends Component {
   render() {
     if (this.props.data.loading) {
       return (<div/>);
     }
     const { user } = this.props.data;
+    if (!user) {
+      return <h2>User not found</h2>;
+    }
     return (
-      <h2>User Profile for <i>{user.displayName}</i></h2>
+      <div>
+        <Row>
+          <h2>User Profile for <i>{user.displayName}</i></h2>
+        </Row>
+        <Row>
+          <Col xs={4}>
+            <UserDetails />
+          </Col>
+          <Col xs={8}>
+            <ProfileArticlesList
+              articles={[]}
+              />
+          </Col>
+        </Row>
+      </div>
     )
   }
 }
