@@ -33,7 +33,7 @@ class Header extends Component {
       return (
         <Nav>
           <NavItem>
-            <LoginInfo username={this.props.data.user.email}/>
+            <LoginInfo username={user.displayName} />
           </NavItem>
           <NavItem>
             <NavLink href="#" onClick={this.logout.bind(this)}>Logout</NavLink>
