@@ -19,7 +19,6 @@ class Article extends Component {
         <h3>{title}</h3>
         <div>
           By <UserLink
-            email={owner.email}
             displayName={owner.displayName}
             id={owner.id}
             />

@@ -2,17 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const UserLink = ({email, displayName, id}) => {
+const UserLink = ({ displayName, id }) => {
   return (
     <Link to={`/profiles/${id}`}>
-      {(displayName && displayName!=='') ? displayName : email}
+      {displayName}
     </Link>
   )
 }
 
 UserLink.propTypes = {
   id: PropTypes.string.isRequired,
-  email: PropTypes.string,
   displayName: PropTypes.string,
 }
 
