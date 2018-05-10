@@ -7,8 +7,9 @@ import {
 } from 'reactstrap';
 
 import HeaderLogo from './HeaderLogo';
-import LoginInfo from './../Account/Login/LoginInfo';
+import LoginUnit from './LoginUnit';
 import MainNav from './Navigation/MainNav';
+
 import query from '../../graphql/queries/CurrentUser';
 import mutation from '../../graphql/mutations/LogoutUser';
 
@@ -17,9 +18,11 @@ class Header extends Component {
     super(props);
     this.state = {user: null};
     this.renderLogin.bind(this);
+    this.onLogout.bind(this);
   }
 
-  logout() {
+  onLogout() {
+    console.log(this);
     this.props.mutate({
       refetchQueries: [{ query }]
     });
@@ -27,31 +30,13 @@ class Header extends Component {
 
   renderLogin() {
     const { loading, user } = this.props.data;
-    if (loading) { return (<Nav/>); }
-
-    if (user) {
-      return (
-        <Nav>
-          <NavItem>
-            <LoginInfo username={user.displayName} />
-          </NavItem>
-          <NavItem>
-            <NavLink href="#" onClick={this.logout.bind(this)}>Logout</NavLink>
-          </NavItem>
-        </Nav>
-      );
-    } else {
-      return (
-        <Nav>
-          <NavItem>
-            <NavLink tag={Link} to="/login">Log in</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={Link} to="/register">Sign up</NavLink>
-          </NavItem>
-        </Nav>
-      );
-    }
+    if (loading) return (<Nav/>);
+    return (
+      <LoginUnit
+        user={user}
+        onLogout={()=>this.onLogout()}
+        />
+    );
   }
 
   render() {
@@ -61,7 +46,6 @@ class Header extends Component {
           <NavbarBrand tag={Link} to={'/'}>
             <HeaderLogo/>
           </NavbarBrand>
-
           {this.renderLogin()}
         </Navbar>
         <Row>
