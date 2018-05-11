@@ -11,12 +11,11 @@ class PaginationControl extends Component {
     let path = pathname;
     if (path.endsWith(`/${activePage}`)) {
         path = path.substring(0, path.lastIndexOf('/') + 1);
-        console.log(path);
     }
     else if (!path.endsWith('/')) {
       path = `${path}/`;
     }
-    
+
     return path;
   }
   renderSinglePaginationItem(page) {
