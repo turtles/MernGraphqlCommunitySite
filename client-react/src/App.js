@@ -22,21 +22,22 @@ class App extends Component {
       <Router>
         <Container className='App'>
           <Header />
-
-          <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path='/dashboard' component={Dashboard}/>
-            <Route path='/preferences/:subroute?' component={Preferences}/>
-            <Route path='/profiles/:id' component={ProfilePage}/>
-            <Route exact path='/articles/:page?' component={ArticlesPage}/>
-            <Route path='/articles/view/:id?' component={ArticlesPage}/>
-            <Route path='/articles/search/:textSearch?/:tags?/:sortBy?/:page?' component={ArticlesPage}/>
-            <Route path='/submit' component={CreateContent}/>
-            <Route path='/login' component={LoginForm}/>
-            <Route path='/register' component={RegisterForm}/>
-            <Route path='/:page' component={Home}/>
-            <Route component={NotFound}/>
-          </Switch>
+          <div className='page-area'>
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route path='/dashboard' component={Dashboard}/>
+              <Route path='/preferences/:subroute?' component={Preferences}/>
+              <Route path='/profiles/:id' component={ProfilePage}/>
+              <Route exact path='/articles/:page?' component={ArticlesPage}/>
+              <Route path='/articles/view/:id?' component={ArticlesPage}/>
+              <Route path='/articles/search/:textSearch?/:tags?/:sortBy?/:page?' component={ArticlesPage}/>
+              <Route path='/submit' component={CreateContent}/>
+              <Route path='/login' component={LoginForm}/>
+              <Route path='/register' component={RegisterForm}/>
+              <Route path='/:page' component={Home}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </div>
         </Container>
       </Router>
     );
