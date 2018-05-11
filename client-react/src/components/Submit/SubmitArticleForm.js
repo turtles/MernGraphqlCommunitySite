@@ -6,6 +6,8 @@ import TagsInput from 'react-tagsinput'
 import { graphql } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 
+import ErrorList from '../Reusable/Errors/ErrorList';
+
 import mutation from '../../graphql/mutations/SubmitArticle';
 
 class SubmitArticleForm extends Component {
@@ -15,7 +17,8 @@ class SubmitArticleForm extends Component {
       owner: '',
       title: '',
       body: '',
-      tags: []
+      tags: [],
+      errors: []
     };
     this.onChangeTags = this.onChangeTags.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -38,7 +41,8 @@ class SubmitArticleForm extends Component {
         this.props.history.push(`/articles/view/${data.submitArticle.id}`);
       }
     ).catch(res => {
-      console.error(res);
+      const errors = res.graphQLErrors.map(error=>error.message);
+      this.setState({ errors });
     });
   }
   onChangeTitle(e) {
@@ -49,7 +53,7 @@ class SubmitArticleForm extends Component {
   }
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Form onSubmit={this.onSubmit.bind(this)}>
           <FormGroup>
             <Label for="inputTitle">Title</Label>
@@ -62,7 +66,8 @@ class SubmitArticleForm extends Component {
           <TagsInput value={this.state.tags} onChange={this.onChangeTags} addKeys={[9, 13, 186, 188]} onlyUnique />
           <Button type="submit" color="primary">Submit</Button>
         </Form>
-      </div>
+        <ErrorList errors={this.state.errors} />
+      </React.Fragment>
     );
   }
 }

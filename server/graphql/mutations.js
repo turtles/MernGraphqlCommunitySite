@@ -83,8 +83,12 @@ const mutation = new GraphQLObjectType({
         tags: { type: new GraphQLList(GraphQLString) }
       },
       resolve(parentValue, args, info) {
-        if (!info.user) {
+        const { user } = info;
+        if (!user) {
           throw new Error('You must be logged in to submit an article.');
+        }
+        if (!user.activated) {
+          throw new Error('Your email must be activated in order to submit an article.');
         }
         args.owner = info.user;
         return ArticlesService.createArticle(args);
