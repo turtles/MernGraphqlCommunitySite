@@ -45,7 +45,7 @@ class ChangePassword extends Component {
       refetchQueries: [{ query }]
     }).catch(res => {
       const errors = res.graphQLErrors.map(error=>error.message);
-      console.log(errors);
+      this.setState({errors});
     });
   }
   onChangeCurrentPassword(e) {

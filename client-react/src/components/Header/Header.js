@@ -22,7 +22,6 @@ class Header extends Component {
   }
 
   onLogout() {
-    console.log(this);
     this.props.mutate({
       refetchQueries: [{ query }]
     });
