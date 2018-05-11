@@ -15,6 +15,7 @@ class ProfilePage extends Component {
     if (!user) {
       return <h2>User not found</h2>;
     }
+
     return (
       <div>
         <Row>
@@ -26,7 +27,7 @@ class ProfilePage extends Component {
           </Col>
           <Col xs={8}>
             <ProfileArticlesList
-              articles={[]}
+              owner={user.id}
               />
           </Col>
         </Row>
