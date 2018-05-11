@@ -7,51 +7,38 @@ import ArticlesList from './ArticlesList';
 class FilteredArticlesList extends Component {
   constructor(props) {
     super(props);
-    const hasSearchFilter = this.props.match.path.startsWith("/articles/search");
-    if (hasSearchFilter) {
-      const { textSearch, tags, sortBy, page } = this.props.match.params;
-      this.state = {
-        hasSearchFilter,
-        textSearch: this.formatTextSearch(textSearch),
-        tags: this.formatTagsFromRoute(tags),
-        sortBy,
-        page: this.formatPage(page)
-      }
-    } else {
-      const { page } = this.props.match.params;
-      this.state = {
-        hasSearchFilter: false,
-        page: this.formatPage(page)
-      };
-    }
     this.showList = this.showList.bind(this);
   }
-  formatPage(page) {
-
+  hasSearchFilter() {
+    return this.props.match.path.startsWith("/articles/search");
+  }
+  getPage() {
+    const { page } = this.props.match.params;
     return (page) ? parseInt(page, 10) : 1;
   }
-  formatTextSearch(textSearch) {
+  getTextSearch() {
+    const { textSearch } = this.props.match.params;
     return textSearch;
   }
-  formatTagsFromRoute(tags) {
-    return (tags) ? tags.split('+') : '';
+  getTags() {
+    const { tags } = this.props.match.params;
+    return (tags) ? tags.split('+') : [];
   }
   showList() {
-    if (this.state.hasSearchFilter) {
+    if (this.hasSearchFilter()) {
+      const { sortBy } = this.props.match.params;
       return (
         <ArticlesList
-          hasSearchFilter={this.state.hasSearchFilter}
-          textSearch={this.state.textSearch}
-          tags={this.state.tags}
-          sortBy={this.state.sortBy}
-          page={this.state.page}
+          hasSearchFilter={this.hasSearchFilter()}
+          textSearch={this.getTextSearch()}
+          tags={this.getTags()}
+          sortBy={sortBy}
+          page={this.getPage()}
           />
       );
     } else {
       return (
-        <ArticlesList
-          page={this.state.page}
-          />
+        <ArticlesList page={this.getPage()} />
       );
     }
   }
