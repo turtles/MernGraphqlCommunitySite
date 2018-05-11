@@ -2,12 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const UserLink = ({ displayName, id }) => {
-  return (
-    <Link to={`/profiles/${id}`}>
-      {displayName}
-    </Link>
-  )
+const UserLink = ({ owner }) => {
+  if (owner) {
+    return (
+      <Link to={`/profiles/${owner.id}`}>
+        {owner.displayName}
+      </Link>
+    );
+  } else {
+    return (<i>deleted</i>);
+  }
 }
 
 UserLink.propTypes = {

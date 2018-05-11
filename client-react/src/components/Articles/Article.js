@@ -18,10 +18,7 @@ class Article extends Component {
       <div>
         <h3>{title}</h3>
         <div>
-          By <UserLink
-            displayName={owner.displayName}
-            id={owner.id}
-            />
+          By <UserLink user={owner} />
         </div>
         <p>{body}</p>
         <ViewCounter views={views}/>
