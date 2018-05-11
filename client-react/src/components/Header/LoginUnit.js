@@ -3,18 +3,42 @@ import { Link } from 'react-router-dom';
 import {
     Nav, NavItem, NavLink
 } from 'reactstrap';
+import styled from 'styled-components';
 
 import LoginInfo from '../Account/Login/LoginInfo';
+
+const LoginNavLink = styled(NavLink)`
+  display: inline-block;
+  color: white;
+  background: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 2rem;
+  width: 6rem;
+  height: 2rem;
+  line-height: 1rem;
+  text-align: center;
+  margin: 0 0.25rem;
+  &:hover{
+    background: #0369d9;
+    color: white;
+  }
+`;
+const TextNavItem = styled(NavItem)`
+  line-height: 0;
+  margin-top:1rem;
+`;
 
 const LoginUnit = ({ user, onLogout }) => {
   if (user) {
     return (
       <Nav>
-        <NavItem>
+        <TextNavItem>
           <LoginInfo username={user.displayName} />
-        </NavItem>
+        </TextNavItem>
         <NavItem>
-          <NavLink href="#" onClick={onLogout}>Logout</NavLink>
+          <LoginNavLink href="#" onClick={onLogout}>
+            Logout
+          </LoginNavLink>
         </NavItem>
       </Nav>
     );
@@ -22,10 +46,10 @@ const LoginUnit = ({ user, onLogout }) => {
     return (
       <Nav>
         <NavItem>
-          <NavLink tag={Link} to="/login">Log in</NavLink>
+          <LoginNavLink tag={Link} to="/login">Log in</LoginNavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={Link} to="/register">Sign up</NavLink>
+          <LoginNavLink tag={Link} to="/register">Sign up</LoginNavLink>
         </NavItem>
       </Nav>
     );
