@@ -20,6 +20,12 @@ class SubmitArticlePage extends Component {
           message="You must be logged in to submit an article."
         />
       );
+    } else if (!user.activated) {
+      return (
+        <RequiresLoginError
+          message="Please verify your email before submitting an article."
+        />
+      );
     }
     return this.renderSubmitForm();
   }
