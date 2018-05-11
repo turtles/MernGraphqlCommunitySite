@@ -23,9 +23,9 @@ class RegisterForm extends Component {
   onError(error) {
     this.setState({errors: [error]});
   }
-  onSubmit({email, password}) {
+  onSubmit({displayName, email, password}) {
     this.props.mutate({
-      variables: {email, password},
+      variables: {displayName, email, password},
       refetchQueries: [{ query }]
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);
@@ -37,6 +37,7 @@ class RegisterForm extends Component {
       <div>
         <h1>Create an Account</h1>
         <AuthForm
+          hasDisplayNameField
           onSubmit={this.onSubmit.bind(this)}
           onError={this.onError.bind(this)}
         />

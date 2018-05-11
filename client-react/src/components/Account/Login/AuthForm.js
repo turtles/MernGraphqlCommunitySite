@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 const validator = require('email-validator');
 
+const passwordMinLength = 6;
+
 class AuthForm extends Component {
   constructor(props){
     super(props);
     this.state={email:'',password:''};
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateDisplayName = this.updateDisplayName.bind(this);
     this.updateEmail = this.updateEmail.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
   }
@@ -16,21 +19,40 @@ class AuthForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if (!validator.validate(this.state.email)) {
-      if (this.props.onError) {
-        console.log('error');
-        this.props.onError("Oh no, that email is not valid.");
-      }
+    const { displayName, email, password } = this.state;
+
+    if (!validator.validate(email)) {
+      this.showError('Oh, no! That email is not valid.');
+      return;
+    }
+    if (displayName==='') {
+      this.showError('Username field cannot be blank.');
+      return;
+    }
+    if (password.length < passwordMinLength) {
+      this.showError(`Password must be at least ${passwordMinLength} characters long.`);
       return;
     }
 
-    this.props.onSubmit(this.state);
+    if (this.props.hasDisplayNameField) {
+      this.props.onSubmit({displayName, email, password});
+    } else {
+      this.props.onSubmit({email, password});
+    }
   }
 
+  showError(error) {
+    if (this.props.onError) {
+      this.props.onError(error);
+    }
+  }
+
+  updateDisplayName(e) {
+    this.setState({displayName: e.target.value});
+  }
   updateEmail(e) {
     this.setState({email: e.target.value});
   }
-
   updatePassword(e) {
     this.setState({password: e.target.value});
   }
@@ -38,6 +60,16 @@ class AuthForm extends Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
+        {
+          this.props.hasDisplayNameField ? (
+              <FormGroup>
+                <Input
+                  placeholder = "Username"
+                  type="text"
+                  onChange={this.updateDisplayName} />
+              </FormGroup>
+            ) : null
+        }
         <FormGroup>
           <Input
             placeholder = "Email"

@@ -49,13 +49,20 @@ function changePassword(user, currentPassword, newPassword) {
   });
 }
 
-function signup({ email, password, info }) {
-  const user = new User({ email, password });
-  if (!email || !password) { throw new Error('You must provide an email and password.'); }
+function signup({ displayName, email, password, info }) {
+  if (!displayName || !email || !password) { throw new Error('You must provide a username, email and password.'); }
+  if (password.length < 6) { throw new Error('Password must be at least 6 characters long.')};
 
-  return User.findOne({ email })
+  const user = new User({ displayName, email, password });
+
+  return User.findOne({ $or:[{email}, {displayName}] })
     .then(existingUser => {
-      if (existingUser) { throw new Error('Email in use'); }
+      if (existingUser) {
+        if (existingUser.displayName === displayName) {
+          throw new Error('Username taken :(');
+        }
+        throw new Error('Email already registered');
+      }
       return user.save();
     })
     .then(user => {
