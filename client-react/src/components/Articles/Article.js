@@ -18,7 +18,12 @@ class Article extends Component {
       <div>
         <h3>{title}</h3>
         <div>
-          By <UserLink user={owner} />
+          By {
+            owner ?
+              (<UserLink displayName={owner.displayName} id={owner.id} />)
+              :
+              (<UserLink deleted />)
+          }
         </div>
         <p>{body}</p>
         <ViewCounter views={views}/>
