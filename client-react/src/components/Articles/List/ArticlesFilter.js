@@ -12,7 +12,7 @@ class ArticlesFilter extends Component {
     const {textSearch, sortBy} = this.props.match.params;
 
     this.state = {
-      textSearch: textSearch ? textSearch : '',
+      textSearch: (textSearch && textSearch.length>1) ? textSearch : '',
       sortBy: sortBy ? sortBy : 'new'
     }
 
