@@ -53,11 +53,11 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, { displayName }, info) {
         const { user } = info;
-        if (!user) {
-          return null;
-        }
-        user.displayName = displayName;
-        return user.save();
+        if (!user) throw new Error('Must be logged in to change username.');
+
+        return AuthService.changeDisplayName(
+          user, displayName
+        );
       }
     },
     changePassword: {
@@ -68,10 +68,7 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, { currentPassword, newPassword }, info) {
         const { user } = info;
-        if (!user) {
-          return null;
-        }
-
+        if (!user) throw new Error('Must be logged in to change password.');
         return AuthService.changePassword(
           user, currentPassword, newPassword
         );

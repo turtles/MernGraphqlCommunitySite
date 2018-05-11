@@ -49,6 +49,22 @@ function changePassword(user, currentPassword, newPassword) {
   });
 }
 
+function changeDisplayName(user, displayName) {
+  return new Promise((resolve, reject) => {
+    User.findOne({displayName})
+      .then(existingUser => {
+        if (existingUser) {
+          reject('Username is already taken :(');
+          return;
+        }
+        user.displayName = displayName;
+        return user.save();
+      }).then(user => {
+        resolve(user);
+      });
+  });
+}
+
 function signup({ displayName, email, password, info }) {
   if (!displayName || !email || !password) { throw new Error('You must provide a username, email and password.'); }
   if (password.length < 6) { throw new Error('Password must be at least 6 characters long.')};
@@ -86,4 +102,4 @@ function login({ email, password, info }) {
   });
 }
 
-module.exports = { signup, login, changePassword };
+module.exports = { signup, login, changePassword, changeDisplayName };
