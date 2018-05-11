@@ -35,7 +35,7 @@ class LoginForm extends Component {
   render() {
     return (
       <div>
-        <h3>Log in</h3>
+        <h1>Log in</h1>
         <AuthForm
           onSubmit={this.onSubmit.bind(this)}
           onError={this.onError.bind(this)}

@@ -35,7 +35,7 @@ class RegisterForm extends Component {
   render() {
     return (
       <div>
-        <h3>Create an Account</h3>
+        <h1>Create an Account</h1>
         <AuthForm
           onSubmit={this.onSubmit.bind(this)}
           onError={this.onError.bind(this)}
