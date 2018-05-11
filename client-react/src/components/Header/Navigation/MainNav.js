@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Nav } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 
