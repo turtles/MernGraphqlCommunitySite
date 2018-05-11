@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import ProfileArticle from './ProfileArticle';
@@ -9,7 +9,7 @@ const ProfileArticlesList = (
   }
 ) => {
   return (
-    <fragment>
+    <React.Fragment>
       <h3>Articles</h3>
       {
         articles.map((article) => (
@@ -18,7 +18,7 @@ const ProfileArticlesList = (
             />
         ))
       }
-    </fragment>
+    </React.Fragment>
   );
 }
 
