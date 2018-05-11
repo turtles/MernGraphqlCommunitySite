@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
+import { ListGroup, ListGroupItem } from 'reactstrap';
+import styled from 'styled-components';
+
+const ErrorListGroup = styled(ListGroup)`
+  margin: 1rem 0;
+`;
 
 class ErrorList extends Component {
   render() {
     if (this.props.error) {
-      return (<li>{this.props.error}</li>);
+      return (
+        <ErrorListGroup>
+          <ListGroupItem color="danger">
+            {this.props.error}
+          </ListGroupItem>
+        </ErrorListGroup>
+      );
     }
     if (!this.props.errors || this.props.errors.length===0) {
-      return <div/>;
+      return null;
     }
     return (
-      <ul>
-        {this.props.errors.map(error => (<li key={error}>{error}</li>))}
-      </ul>
+      <ErrorListGroup>
+        {
+          this.props.errors.map(error => (
+            <ListGroupItem color="danger" key={error}>
+              {error}
+            </ListGroupItem>
+            )
+          )
+        }
+      </ErrorListGroup>
     );
   }
 }
