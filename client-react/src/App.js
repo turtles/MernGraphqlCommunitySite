@@ -7,7 +7,7 @@ import { Container } from 'reactstrap';
 
 import Home from './components/Home';
 import Header from './components/Header/Header';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 import Preferences from './components/Account/AccountPreferences/AccountPreferences';
 import LoginForm from './components/Account/Login/LoginForm';
 import RegisterForm from './components/Account/Login/RegisterForm';
