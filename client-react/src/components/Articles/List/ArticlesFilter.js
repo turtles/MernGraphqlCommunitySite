@@ -9,9 +9,11 @@ class ArticlesFilter extends Component {
   constructor(props) {
     super(props);
 
+    const {textSearch, sortBy} = this.props.match.params;
+
     this.state = {
-      textSearch: '',
-      sortBy: 'new'
+      textSearch: textSearch ? textSearch : '',
+      sortBy: sortBy ? sortBy : 'new'
     }
 
     this.onSubmit=this.onSubmit.bind(this);
@@ -21,7 +23,10 @@ class ArticlesFilter extends Component {
   onSubmit(e){
     e.preventDefault();
 
-    const route = `/articles/search/${this.state.textSearch}/+/${this.state.sortBy}`;
+    let {tags} = this.props.match.params;
+    if (!tags) tags = '+';
+
+    const route = `/articles/search/${this.state.textSearch}/${tags}/${this.state.sortBy}`;
     this.props.history.push(route);
   }
   onChangeTextSearch(e) {
