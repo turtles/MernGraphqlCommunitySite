@@ -5,12 +5,15 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import query from '../../../../graphql/queries/CurrentUser';
 import mutation from '../../../../graphql/mutations/UpdateDisplayName';
 
+import ErrorList from '../../../Reusable/Errors/ErrorList';
+
 class BasicInformation extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      displayName: this.props.data.user.displayName
+      displayName: this.props.data.user.displayName,
+      errors: []
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -19,12 +22,13 @@ class BasicInformation extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+    const {displayName} = this.state;
     this.props.mutate({
-      variables: {displayName: this.state.displayName},
+      variables: { displayName },
       refetchQueries: [{ query }]
     }).catch(res => {
       const errors = res.graphQLErrors.map(error=>error.message);
-      console.log(errors);
+      this.setState({errors});
     });
   }
   onChangeDisplayName(e) {
@@ -54,7 +58,14 @@ class BasicInformation extends Component {
           />
         </FormGroup>
 
-        <Button color="primary">Submit</Button>
+        <Button
+          disabled={this.props.data.user.displayName === this.state.displayName}
+          color="primary"
+          >
+            Submit
+        </Button>
+
+        <ErrorList errors={this.state.errors} />
       </Form>
     );
   }
