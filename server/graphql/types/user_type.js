@@ -12,6 +12,7 @@ const UserType = new GraphQLObjectType({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
     displayName: { type: GraphQLString },
+    joined: { type: GraphQLString },
     activated: { type: GraphQLBoolean }
   }
 });

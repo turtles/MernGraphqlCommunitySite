@@ -23,7 +23,10 @@ class ProfilePage extends Component {
         </Row>
         <Row>
           <Col xs={4}>
-            <UserDetails />
+            <UserDetails
+              numArticles={4}
+              joined={user.joined}
+              />
           </Col>
           <Col xs={8}>
             <ProfileArticlesList

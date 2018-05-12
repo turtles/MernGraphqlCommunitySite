@@ -5,6 +5,7 @@ import { Table } from 'reactstrap';
 
 const UserDetails = (
   {
+    joined,
     numArticles
   }
 ) => {
@@ -16,8 +17,8 @@ const UserDetails = (
           <td>{numArticles}</td>
         </tr>
         <tr>
-          <td>Meow</td>
-          <td>no</td>
+          <td>Joined on</td>
+          <td>{joined}</td>
         </tr>
       </tbody>
     </Table>
