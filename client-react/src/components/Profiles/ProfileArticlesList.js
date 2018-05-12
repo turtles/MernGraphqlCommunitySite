@@ -22,8 +22,11 @@ const ProfileArticlesList = (props) => {
       {
         feed.map((article) => (
           <ProfileArticle
+            key={article.id}
             id={article.id}
             title={article.title}
+            views={article.views}
+            date={article.lastModified}
             />
           )
         )

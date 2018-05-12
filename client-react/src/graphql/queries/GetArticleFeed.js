@@ -24,6 +24,8 @@ export default gql`
         title
         body
         views
+        created
+        lastModified
         owner {
           email
         }
