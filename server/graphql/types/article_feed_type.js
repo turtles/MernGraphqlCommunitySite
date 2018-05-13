@@ -15,6 +15,7 @@ const ArticleFeedType = new GraphQLObjectType({
     id: { type: GraphQLID },
     cursor: { type: GraphQLInt },
     numPages: { type: GraphQLInt },
+    total: { type: GraphQLInt },
     feed: { type: new GraphQLList(ArticleType) }
   }
 });
