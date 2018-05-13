@@ -22,7 +22,9 @@ const createComment = (args) => {
     throw new Error(`Can't leave an empty comment`);
   }
   const comment = new Comment({
-     body: args.body
+    owner: args.owner,
+    article: args.article,
+    body: args.body
   });
 
   return comment.save();

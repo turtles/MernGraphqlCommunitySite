@@ -98,6 +98,8 @@ const mutation = new GraphQLObjectType({
     submitComment: {
       type: CommentType,
       args: {
+        owner: { type: GraphQLID },
+        article: { type: GraphQLID },
         body: { type: GraphQLString }
       },
       resolve(parentValue, args, info) {
@@ -108,7 +110,6 @@ const mutation = new GraphQLObjectType({
         if (!user.activated) {
           throw new Error('Your email must be activated in order to submit a comment.');
         }
-
         return ArticlesService.createComment(args);
       }
     }

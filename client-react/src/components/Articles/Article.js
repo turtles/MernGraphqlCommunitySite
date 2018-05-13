@@ -6,6 +6,7 @@ import ErrorList from '../Reusable/Errors/ErrorList';
 import TagsList from '../Reusable/Tags/TagsList';
 import UserLink from '../Reusable/UserLink';
 import ViewCounter from './ViewCounter';
+import Comments from './Comments/Comments';
 
 class Article extends Component {
   render() {
@@ -16,18 +17,21 @@ class Article extends Component {
     const { title, body, views, tags, owner } = this.props.data.article;
     return (
       <div>
-        <h3>{title}</h3>
         <div>
-          By {
-            owner ?
-              (<UserLink displayName={owner.displayName} id={owner.id} />)
-              :
-              (<UserLink deleted />)
-          }
+          <h3>{title}</h3>
+          <div>
+            By {
+              owner ?
+                (<UserLink displayName={owner.displayName} id={owner.id} />)
+                :
+                (<UserLink deleted />)
+            }
+          </div>
+          <p>{body}</p>
+          <ViewCounter views={views}/>
+          <TagsList tags={tags}/>
         </div>
-        <p>{body}</p>
-        <ViewCounter views={views}/>
-        <TagsList tags={tags}/>
+        <Comments/>
       </div>
     );
   }
