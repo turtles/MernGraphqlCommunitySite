@@ -9,6 +9,7 @@ const {
 
 const UserType = require('./types/user_type');
 const ArticleType = require('./types/article_type');
+const CommentType = require('./types/comment_type');
 const AuthService = require('../middleware/passport');
 const ArticlesService = require('../middleware/articles');
 
@@ -92,6 +93,23 @@ const mutation = new GraphQLObjectType({
         }
         args.owner = info.user;
         return ArticlesService.createArticle(args);
+      }
+    },
+    submitComment: {
+      type: CommentType,
+      args: {
+        body: { type: GraphQLString }
+      },
+      resolve(parentValue, args, info) {
+        const { user } = info;
+        if (!user) {
+          throw new Error('You must be logged in to submit a comment.');
+        }
+        if (!user.activated) {
+          throw new Error('Your email must be activated in order to submit a comment.');
+        }
+
+        return ArticlesService.createComment(args);
       }
     }
   }

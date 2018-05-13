@@ -10,10 +10,12 @@ const {
 
 const UserType = require('./user_type');
 const ArticleType = require('./article_type');
+const CommentType = require('./comment_type');
 const ArticleFeedType = require('./article_feed_type');
 
 const User = mongoose.model('user');
 const Article = mongoose.model('article');
+const Comment = mongoose.model('comment');
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -35,6 +37,20 @@ const RootQueryType = new GraphQLObjectType({
         }
         // if id is not specified, get the logged in user
         return req.user;
+      }
+    },
+    comments: {
+      type: new GraphQLList(CommentType),
+      args: {
+        articleId: { type: GraphQLString }
+      },
+      resolve(parentValue, args, req) {
+        return new Promise((resolve, reject) => {
+          Comment.find(args, (err, comments) => {
+            if (err) reject(err);
+            resolve(comments);
+          });
+        })
       }
     },
     article: {
