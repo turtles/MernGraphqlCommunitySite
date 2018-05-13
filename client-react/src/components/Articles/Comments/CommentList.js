@@ -27,11 +27,12 @@ const CommentList = (props) => {
     <div>
       {
         comments.map((comment, id) => (
-            <Comment
-              key={id}
-              displayName={comment.owner.displayName}
-              body={comment.body}
-              />
+          <Comment
+            key={id}
+            userId={comment.owner.id}
+            displayName={comment.owner.displayName}
+            body={comment.body}
+            />
           )
         )
       }

@@ -1,8 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-const Comment = ({displayName, body}) => (
+
+const UserLink = styled(Link)`
+  font-size: 1.5em;
+  color: black;
+`;
+
+const Comment = ({displayName, userId, body}) => (
   <div>
-    <h5>{displayName}</h5>
+    <UserLink to={`/profiles/${userId}`}>
+      {displayName}
+    </UserLink>
     <p>{body}</p>
   </div>
 );
