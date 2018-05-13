@@ -13,7 +13,7 @@ class Comments extends Component {
           articleId = { articleId }
         /> 
         <CommentList
-          comments={[]}
+          articleId = { articleId }
           />
       </div>
     );

@@ -29,15 +29,12 @@ class CommentForm extends Component {
   }
   async onSubmit(e) {
     e.preventDefault();
-    console.log(this.props);
     await this.props.mutate({
       variables: {
         owner: this.props.data.user.id,
         article: this.props.articleId,
         body: this.state.body
       }
-    }).then(({data}) => {
-      // refresh page?
     }).catch(res => {
       const errors = res.graphQLErrors.map(error=>error.message);
       this.setState({ errors });

@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
+
+import query from '../../../graphql/queries/Comments';
+
 import Comment from './Comment';
 
 /* <Comment
@@ -7,7 +11,11 @@ displayName={comment.user.displayName}
 body={comment.body}
 /> */
 
-const CommentList = ({comments}) => {
+const CommentList = (props) => {
+  if (props.data.loading) {
+    return <div/>;
+  }
+  const {comments} = props.data;
   if (!comments || comments.length===0) {
     return (
       <div>
@@ -21,8 +29,8 @@ const CommentList = ({comments}) => {
         comments.map((comment, id) => (
             <Comment
               key={id}
-              displayName='displayname'
-              body='body'
+              displayName={comment.owner.displayName}
+              body={comment.body}
               />
           )
         )
@@ -32,7 +40,16 @@ const CommentList = ({comments}) => {
 }
 
 CommentList.propTypes = {
-  comments: PropTypes.arrayOf(PropTypes.object).isRequired
+  articleId: PropTypes.string.isRequired
 };
 
-export default CommentList;
+export default graphql(query,{
+  options:
+    (props) => {
+      return {
+        variables: {
+          articleId: props.articleId
+        }
+      }
+    }
+})(CommentList);

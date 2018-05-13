@@ -45,11 +45,18 @@ const RootQueryType = new GraphQLObjectType({
         articleId: { type: GraphQLString }
       },
       resolve(parentValue, args, req) {
+        args.articleId = mongoose.Types.ObjectId(args.articleId);
+
         return new Promise((resolve, reject) => {
-          Comment.find(args, (err, comments) => {
+          Comment.find({
+            article: args.articleId
+          }, (err, comments) => {
             if (err) reject(err);
+          })
+          .populate('owner', 'id displayName')
+          .exec((err, comments) => {
             resolve(comments);
-          });
+          })
         })
       }
     },
