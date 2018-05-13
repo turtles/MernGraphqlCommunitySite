@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FormatDate from '../../library/FormatDate';
 
 import { Table } from 'reactstrap';
 
@@ -10,15 +11,11 @@ const UserDetails = (
   }
 ) => {
   return (
-    <Table>
+    <Table striped>
       <tbody>
         <tr>
-          <td>Submissions</td>
-          <td>{numArticles}</td>
-        </tr>
-        <tr>
           <td>Joined on</td>
-          <td>{joined}</td>
+          <td>{FormatDate(joined)}</td>
         </tr>
       </tbody>
     </Table>
