@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 
 import ProfileArticle from './ProfileArticle';
 
-import query from '../../graphql/queries/GetArticleFeed';
+import query from '../../graphql/queries/GetArticleFeedLess';
 
 const ProfileArticlesList = (props) => {
   if (props.data.loading) {
@@ -15,10 +15,12 @@ const ProfileArticlesList = (props) => {
   if (!feed || feed.length===0) {
     return (<div>This user has not submitted any articles.</div>);
   }
+  const { total } = props.data.articleFeed;
 
   return (
     <React.Fragment>
       <h3>Articles</h3>
+      <p>Total articles: {total}</p>
       {
         feed.map((article) => (
           <ProfileArticle
