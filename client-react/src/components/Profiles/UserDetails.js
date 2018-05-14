@@ -6,8 +6,7 @@ import { Table } from 'reactstrap';
 
 const UserDetails = (
   {
-    joined,
-    numArticles
+    joined
   }
 ) => {
   return (
@@ -23,7 +22,7 @@ const UserDetails = (
 }
 
 UserDetails.propTypes = {
-  numArticles: PropTypes.string
+  joined: PropTypes.string
 }
 
 export default UserDetails;
