@@ -8,6 +8,8 @@ export default gql`
       body
       views
       tags
+      created
+      lastModified
       owner {
         id
         displayName

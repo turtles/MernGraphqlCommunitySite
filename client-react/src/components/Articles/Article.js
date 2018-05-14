@@ -9,6 +9,7 @@ import TagsList from '../Reusable/Tags/TagsList';
 import UserLink from '../Reusable/UserLink';
 import ViewCounter from './ViewCounter';
 import Comments from './Comments/Comments';
+import DatePosted from './DatePosted';
 
 import EditArticle from './EditArticle';
 
@@ -33,7 +34,7 @@ class Article extends Component {
     if (loading) return <div/>;
     else if (error) return <ErrorList error={error}/>;
 
-    const { title, body, views, tags, owner } = this.props.data.article;
+    const { title, body, views, tags, owner, created, lastModified } = this.props.data.article;
 
     if (this.state.editting) {
       return (
@@ -65,6 +66,7 @@ class Article extends Component {
             }
           </div>
           <p>{body}</p>
+          <DatePosted created={created} lastModified={lastModified}/>
           <ViewCounter views={views}/>
           <TagsList tags={tags}/>
         </div>

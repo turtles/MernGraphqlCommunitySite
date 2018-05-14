@@ -22,7 +22,7 @@ const ProfileArticle = ({ id, title, views, date }) => {
         </p>
       </Col>
       <Col xs={6} sm={3} className="float-right">
-        <p>{FormatDate(date)}</p>
+        <p>{FormatDate.date(date)}</p>
         <p>{views} views</p>
       </Col>
     </ArticleRow>

@@ -14,7 +14,7 @@ const UserDetails = (
       <tbody>
         <tr>
           <td>Joined on</td>
-          <td>{FormatDate(joined)}</td>
+          <td>{FormatDate.date(joined)}</td>
         </tr>
       </tbody>
     </Table>
