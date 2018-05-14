@@ -65,6 +65,7 @@ class CommentForm extends Component {
               disabled={this.state.body.length === 0}>
               Submit
             </Button>
+            <ErrorList errors={this.state.errors} />
           </Form>
         </Collapse>
       </div>
