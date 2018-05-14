@@ -95,6 +95,25 @@ const mutation = new GraphQLObjectType({
         return ArticlesService.createArticle(args);
       }
     },
+    modifyArticle: {
+      type: ArticleType,
+      args: {
+        id: { type: GraphQLID },
+        title: { type: GraphQLString },
+        body: { type: GraphQLString },
+        tags: { type: new GraphQLList(GraphQLString) }
+      },
+      resolve(parentValue, args, info) {
+        const { user } = info;
+        if (!user) {
+          throw new Error('You must be logged in to submit an article.');
+        }
+        // No need to check if the user is activated.
+        // The article would not exist if they were not activated.
+        args.id = mongoose.Types.ObjectId(args.id);
+        return ArticlesService.modifyArticle(args, user.id);
+      }
+    },
     submitComment: {
       type: CommentType,
       args: {

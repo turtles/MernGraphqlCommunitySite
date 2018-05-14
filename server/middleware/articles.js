@@ -17,6 +17,22 @@ const createArticle = (args) => {
     return article.save();
 };
 
+const modifyArticle = (args, userId) => {
+  return new Promise((resolve,reject) => {
+    Article.findOne({_id: args.id}, (err, article)=> {
+      if (err) reject(err);
+      if (!article) return reject('Article not found.');
+      if (!article.owner.equals(userId)) {
+        return reject(`You don't have permission to edit this article.`);
+      }
+      article.title = args.title;
+      article.body = args.body;
+      article.tags = args.tags;
+      resolve(article.save());
+    });
+  });
+}
+
 const createComment = (args) => {
   if (args.body.trim() === '') {
     throw new Error(`Can't leave an empty comment`);
@@ -30,4 +46,4 @@ const createComment = (args) => {
   return comment.save();
 }
 
-module.exports = { createArticle, createComment } ;
+module.exports = { createArticle, createComment, modifyArticle } ;

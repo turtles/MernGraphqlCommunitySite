@@ -38,7 +38,8 @@ class Article extends Component {
     if (this.state.editting) {
       return (
         <EditArticle
-          onCancel={this.toggleEditor}
+          id={this.props.articleId}
+          onClose={this.toggleEditor}
           body={body}
           title={title}
           tags={tags}
