@@ -102,4 +102,34 @@ function login({ email, password, info }) {
   });
 }
 
-module.exports = { signup, login, changePassword, changeDisplayName };
+function activate(id, activation_token) {
+  return new Promise((resolve, reject) => {
+    User.findOne(
+      { // query
+        _id: mongoose.Types.ObjectId(id)
+      },
+      function(err, user) {
+        if (err) {
+          console.log(err);
+          return reject(err);
+        }
+        if (!user) return reject('User not found');
+        if (user.activation_token &&
+          user.activation_token !== activation_token) {
+          return reject('Invalid activation code');
+        }
+        if (user.activated) {
+          return resolve(user);
+        }
+
+        user.activated = true;
+        user.activation_token = '';
+        user.save();
+
+        resolve(user);
+      }
+    )
+  })
+}
+
+module.exports = { signup, login, activate, changePassword, changeDisplayName };

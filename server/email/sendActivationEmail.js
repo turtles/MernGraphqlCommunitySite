@@ -1,8 +1,5 @@
 const nodemailer = require('nodemailer');
 
-let transportAccountVerification;
-
-
 module.exports = function(email, userId, activationToken) {
   nodemailer.createTestAccount((err, account) => {
       if (err) {
@@ -19,14 +16,14 @@ module.exports = function(email, userId, activationToken) {
     });
 
     const activationEmailBody =
-      `This is your account activation link! localhost:3001/activate/${userId}/${activationToken}`;
+      `This is your account activation link! localhost:3000/activate/${userId}/${activationToken}`;
 
     let mailOptions = {
-      from: '"A ghost ooOoOOo 👻" <aghostooooooo@example.com>', // sender address
-      to: 'human@example.com, manuh@example.com', // list of receivers
-      subject: 'Verify your account!', // Subject line
+      from: '"A ghost ooOoOOo 👻" <aghostooooooo@example.com>',
+      to: 'human@example.com',
+      subject: 'Verify your account!',
       text: activationEmailBody,
-      html: `<b>${activationEmailBody}</b>` // html body
+      html: `<b>${activationEmailBody}</b>`
     };
 
     transport.sendMail(mailOptions, (error, info) => {

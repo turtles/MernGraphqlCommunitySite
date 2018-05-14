@@ -131,6 +131,16 @@ const mutation = new GraphQLObjectType({
         }
         return ArticlesService.createComment(args);
       }
+    },
+    activateAccount: { 
+      type: UserType,
+      args: {
+        id: { type: GraphQLID },
+        token: { type: GraphQLID }
+      },
+      resolve(parentValue, args, info) {
+        return AuthService.activate(args.id, args.token);
+      }
     }
   }
 });

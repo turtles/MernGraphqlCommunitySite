@@ -15,6 +15,7 @@ import CreateContent from './components/Submit/SubmitArticlePage';
 import NotFound from './components/Reusable/Errors/NotFound';
 import ArticlesPage from './components/Articles/ArticlesPage';
 import ProfilePage from './components/Profiles/ProfilePage';
+import ActivateAccountPage from './components/Activate/ActivateAccountPage';
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
               <Route path='/submit' component={CreateContent}/>
               <Route path='/login' component={LoginForm}/>
               <Route path='/register' component={RegisterForm}/>
+              <Route path='/activate/:userId/:token' component={ActivateAccountPage}/>
               <Route path='/:page' component={Home}/>
               <Route component={NotFound}/>
             </Switch>
