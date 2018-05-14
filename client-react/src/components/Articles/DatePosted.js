@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import FormatDate from '../../library/FormatDate';
 
 const DatePosted = ({created, lastModified}) => {
-  console.log(created);
-  console.log(lastModified);
-
   let text;
   if (lastModified && created !== lastModified) {
     text = `Last editted on ${FormatDate.dateAndTime(lastModified)}`;
@@ -19,7 +16,7 @@ const DatePosted = ({created, lastModified}) => {
 
 DatePosted.propTypes = {
   created: PropTypes.string,
-  lastModified: PropTypes.stirng
+  lastModified: PropTypes.string
 }
 
 export default DatePosted;
