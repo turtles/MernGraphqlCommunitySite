@@ -6,16 +6,19 @@ const DatePosted = ({created, lastModified}) => {
   console.log(created);
   console.log(lastModified);
 
+  let text;
   if (lastModified && created !== lastModified) {
-    return (
-      <div>Last editted on {FormatDate.dateAndTime(lastModified)}</div>
-    );
+    text = `Last editted on ${FormatDate.dateAndTime(lastModified)}`;
   }
-  return (<span>Posted on {created}</span>);
+  else {
+    text = `Posted on ${created}`;
+  }
+
+  return (<span>{text}</span>);
 }
 
 DatePosted.propTypes = {
-  created: PropTypes.stirng,
+  created: PropTypes.string,
   lastModified: PropTypes.stirng
 }
 

@@ -66,7 +66,9 @@ class Article extends Component {
             }
           </div>
           <p>{body}</p>
-          <DatePosted created={created} lastModified={lastModified}/>
+          <div>
+            <DatePosted created={created} lastModified={lastModified}/>
+          </div>
           <ViewCounter views={views}/>
           <TagsList tags={tags}/>
         </div>
