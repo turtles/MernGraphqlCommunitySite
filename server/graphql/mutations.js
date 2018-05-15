@@ -132,7 +132,7 @@ const mutation = new GraphQLObjectType({
         return ArticlesService.createComment(args);
       }
     },
-    activateAccount: { 
+    activateAccount: {
       type: UserType,
       args: {
         id: { type: GraphQLID },
@@ -140,6 +140,19 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, args, info) {
         return AuthService.activate(args.id, args.token);
+      }
+    },
+    resendActivationEmail: {
+      type: UserType,
+      resolve(parentValue, args, info) {
+        const { user } = info;
+        if (!user) {
+          throw new Error('You must be logged in to resend an activation email.');
+        }
+        if (user.activated) {
+          throw new Error('Account already activated.');
+        }
+        return AuthService.resendActivationEmail(user);
       }
     }
   }

@@ -132,4 +132,18 @@ function activate(id, activation_token) {
   })
 }
 
-module.exports = { signup, login, activate, changePassword, changeDisplayName };
+function resendActivationEmail(user) {
+  return new Promise((resolve, reject) => {
+    sendActivationEmail(user.email, user._id, user.activation_token);
+    resolve(user);
+  });
+}
+
+module.exports = {
+  signup,
+  login,
+  activate,
+  changePassword,
+  changeDisplayName,
+  resendActivationEmail
+};
