@@ -9,6 +9,7 @@ import {
 import HeaderLogo from './HeaderLogo';
 import LoginUnit from './LoginUnit';
 import MainNav from './Navigation/MainNav';
+import ActivateAccountHeader from './ActivateAccountHeader';
 
 import query from '../../graphql/queries/CurrentUser';
 import mutation from '../../graphql/mutations/LogoutUser';
@@ -41,6 +42,7 @@ class Header extends Component {
   render() {
     return (
       <div>
+        <ActivateAccountHeader user={this.props.data.user} />
         <Navbar>
           <NavbarBrand tag={Link} to={'/'}>
             <HeaderLogo/>

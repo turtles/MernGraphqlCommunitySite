@@ -28,7 +28,7 @@ const LoginUnit = ({ user, onLogout }) => {
   if (user) {
     return (
       <Nav>
-        <LoginInfo username={user.displayName} activated={user.activated} />
+        <LoginInfo username={user.displayName} />
         <NavItem>
           <LoginNavLink href="#" onClick={onLogout}>
             Logout
