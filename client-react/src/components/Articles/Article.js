@@ -27,7 +27,8 @@ class Article extends Component {
     this.setState({editting: !this.state.editting});
   }
   allowEdit() {
-    return (this.props.currentUser.user.id === this.props.data.article.owner.id);
+    return (this.props.currentUser.user &&
+      this.props.currentUser.user.id === this.props.data.article.owner.id);
   }
   render() {
     const { loading, error } = this.props.data;
