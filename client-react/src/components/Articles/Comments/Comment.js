@@ -10,7 +10,7 @@ const UserLink = styled(Link)`
 
 const Comment = ({displayName, userId, body}) => (
   <div>
-    <UserLink to={`/profiles/${userId}`}>
+    <UserLink to={`/profile/${userId}`}>
       {displayName}
     </UserLink>
     <p>{body}</p>

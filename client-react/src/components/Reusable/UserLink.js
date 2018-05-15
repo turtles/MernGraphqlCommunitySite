@@ -7,7 +7,7 @@ const UserLink = ({ deleted, displayName, id}) => {
     return (<i>deleted</i>);
   } else {
     return (
-      <Link to={`/profiles/${id}`}>
+      <Link to={`/profile/${id}`}>
         {displayName}
       </Link>
     );

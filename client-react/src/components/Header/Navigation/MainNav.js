@@ -6,6 +6,8 @@ import MainNavLink from './MainNavLink';
 
 const MainNav = (props) => {
   const { pathname } = props.location;
+  const { user } = props;
+
   return (
     <Nav tabs>
       <MainNavLink currentRoute={pathname} route='/'>
@@ -17,9 +19,13 @@ const MainNav = (props) => {
       <MainNavLink currentRoute={pathname} route='/submit'>
         Submit
       </MainNavLink>
-      <MainNavLink currentRoute={pathname} route='/dashboard'>
-        Dashboard
-      </MainNavLink>
+      {
+        user ? (
+            <MainNavLink currentRoute={pathname} route='/profile'>
+              Profile
+            </MainNavLink>
+          ) : null
+      }
       <MainNavLink currentRoute={pathname} route='/preferences'>
         My Account
       </MainNavLink>

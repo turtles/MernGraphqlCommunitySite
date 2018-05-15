@@ -7,7 +7,6 @@ import { Container } from 'reactstrap';
 
 import Home from './components/Home';
 import Header from './components/Header/Header';
-import Dashboard from './components/Dashboard/Dashboard';
 import Preferences from './components/Account/AccountPreferences/AccountPreferences';
 import LoginForm from './components/Account/Login/LoginForm';
 import RegisterForm from './components/Account/Login/RegisterForm';
@@ -26,9 +25,8 @@ class App extends Component {
           <div className='page-area'>
             <Switch>
               <Route exact path='/' component={Home}/>
-              <Route path='/dashboard' component={Dashboard}/>
               <Route path='/preferences/:subroute?' component={Preferences}/>
-              <Route path='/profiles/:id' component={ProfilePage}/>
+              <Route path='/profile/:id?' component={ProfilePage}/>
               <Route exact path='/articles/:page?' component={ArticlesPage}/>
               <Route path='/articles/view/:id?' component={ArticlesPage}/>
               <Route path='/articles/search/:textSearch?/:tags?/:sortBy?/:page?' component={ArticlesPage}/>

@@ -40,9 +40,10 @@ class Header extends Component {
   }
 
   render() {
+    const { user } = this.props.data;
     return (
       <div>
-        <ActivateAccountHeader user={this.props.data.user} />
+        <ActivateAccountHeader user={user} />
         <Navbar>
           <NavbarBrand tag={Link} to={'/'}>
             <HeaderLogo/>
@@ -50,7 +51,7 @@ class Header extends Component {
           {this.renderLogin()}
         </Navbar>
         <Row>
-          <MainNav/>
+          <MainNav user={user} />
         </Row>
       </div>
     )
