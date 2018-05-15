@@ -23,18 +23,12 @@ const LoginNavLink = styled(NavLink)`
     color: white;
   }
 `;
-const TextNavItem = styled(NavItem)`
-  line-height: 0;
-  margin-top:1rem;
-`;
 
 const LoginUnit = ({ user, onLogout }) => {
   if (user) {
     return (
       <Nav>
-        <TextNavItem>
-          <LoginInfo username={user.displayName} />
-        </TextNavItem>
+        <LoginInfo username={user.displayName} activated={user.activated} />
         <NavItem>
           <LoginNavLink href="#" onClick={onLogout}>
             Logout
