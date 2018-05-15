@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import { graphql } from 'react-apollo';
 
